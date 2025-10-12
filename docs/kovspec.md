@@ -8,9 +8,22 @@
 * A projektmenedzsment alapja egy Kanban-tábla, ahol vizuálisan követhető a munkafolyamat állapota.
 * A fejlesztés célja, hogy a jelenlegi manuális folyamatokat digitálisan, automatizáltan támogassa.
 ## 2. Jelenlegi helyzet
-
+* Jelenleg az ügyfelek és vágók közötti kommunikáció e-mailben vagy üzenetküldő alkalmazásokban zajlik.
+* A projektek státuszának követése nehézkes, az információk szétszórtan, több platformon érhetők el.
+* Nincs egységes rendszer a feladatok feltöltésére, nyomon követésére és dokumentálására.
+* Az adminisztráció manuálisan történik, ami időigényes és hibalehetőségekkel teli folyamat.
+* Az ügyfelek gyakran nincsenek naprakész információ birtokában a projektjeik előrehaladásáról.
+* A kommunikációs hiányosságok miatt gyakran előfordulnak félreértések és késések a projektek során.
 ## 3. Vágyálom rendszer
-
+* A **PuffManager** lehetővé teszi a bejelentkezést ügyfél és vágó szerepkörben.
+* Az ügyfelek projektfeltöltő űrlapon keresztül adhatják meg a munkához tartozó adatokat és fájlokat.
+* Az admin teamekbe szervezi az ügyfeleket és projektjeiket, így átlátható struktúra alakul ki.
+* A Kanban board segítségével minden felhasználó valós időben láthatja a feladatok státuszát.
+* A rendszer automatikus értesítéseket küld minden módosításról az érintett ügyfeleknek.
+* Minden projekt rendelkezik egy külön chat thread-del, ahol az ügyfél és a vágó közvetlenül kommunikálhat.
+* A beszélgetések archiválódnak, így később is visszakereshetők.
+* A felület intuitív, letisztult, és a gyors együttműködést támogatja.
+* A cél egy átlátható, hatékony és központi platform kialakítása az egész munkafolyamat számára.
 ## 4. Jelenlegi üzleti folyamatok
 
 ## 5. Igényelt üzleti folyamatok
