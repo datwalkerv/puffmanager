@@ -36,7 +36,16 @@ A hibakezelés (pl. hiányzó fájlok, félreértett instrukciók) jellemzően s
 Nincs lehetőség valós idejű státuszfrissítésekre, így az ügyfelek gyakran bizonytalanok a projekt állapotát illetően.  
 A jelenlegi folyamat időigényes, széttagolt és hibalehetőségekkel teli.
 ## 5. Igényelt üzleti folyamatok
-
+A rendszernek automatizált és átlátható munkafolyamatot kell biztosítania az ügyfelek, vágók és adminok számára.  
+Az ügyfelek közvetlenül a felületen keresztül tölthetik fel a projekteket és fájlokat egy strukturált űrlapon.  
+A vágók azonnali értesítést kapnak az új vagy módosított projektekről.  
+Az admin feladata a projektek és teamek létrehozása, kiosztása, valamint az erőforrások kezelése.  
+A Kanban board valós időben tükrözi a projektek aktuális státuszát.  
+Az ügyfelek bármikor ellenőrizhetik saját projektjeik előrehaladását és kommunikálhatnak a vágóval a chat modulban.  
+Minden státuszváltozás, üzenet vagy feltöltés automatikus értesítést generál az érintettek számára.  
+A rendszer naplózza a felhasználói tevékenységeket, így visszakövethető minden módosítás.  
+Az adminok automatikus riportokat exportálhatnak PDF vagy CSV formátumban.  
+A cél egy digitalizált, gyors és hibamentes projektmenedzsment-folyamat, amely minimális manuális beavatkozást igényel.
 ## 6. A rendszerre vonatkozó szabályok
 
 ## 7. Követelménylista
