@@ -21,7 +21,21 @@
 * A felhasználók műveleteit a rendszer naplózza audit célokra.
 * A rendszer minden frissítésnél és kommunikációnál törekszik a minimális késleltetésre.
 ## 5. Adatbevitel és -kimenet
-
+* Az ügyfelek egy űrlapon keresztül vihetnek be projektadatokat (leírás, fájlok, határidők stb...).
+* A fájlok feltöltése támogatja a leggyakoribb formátumokat (pl. mp4, mov, zip, pdf).
+* Az admin jogosult új ügyfeleket és teameket rögzíteni a rendszerben.
+* A vágók frissíthetik a projektek státuszát (pl. “Folyamatban”, “Jóváhagyásra vár”, “Kész”).
+* A rendszer automatikusan rögzíti az összes adatbevitel időpontját és felhasználóját.
+* Az adatbázisban minden projekt egyedi azonosítóval szerepel.
+* A kimeneti oldalon a Kanban board vizuálisan jeleníti meg a projektek állapotát.
+* Az ügyfelek lekérdezhetik saját projektjeik előrehaladását és státuszát.
+* Az üzenetek valós idejű chat formájában kerülnek megjelenítésre a projektszálakon belül.
+* Az adatbázis kapcsolatot biztosít az ügyfelek, projektek, csapatok és üzenetek táblái között.
+* Az admin exportálhat riportokat CSV vagy PDF formátumban.
+* Az adatok megjelenítése dinamikusan történik, újratöltés nélkül.
+* Az adatbevitel validációval történik, hogy elkerülhető legyen a hibás adatrögzítés.
+* A rendszer képes a fájlokhoz kapcsolódó metaadatokat is tárolni (méret, formátum, feltöltő).
+* Minden kommunikáció biztonságosan kerül továbbításra a bizalmas információk védelmének érdekében.
 ## 6. Teljesítmény
 
 ## 7. Biztonság
