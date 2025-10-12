@@ -25,7 +25,16 @@
 * A felület intuitív, letisztult, és a gyors együttműködést támogatja.
 * A cél egy átlátható, hatékony és központi platform kialakítása az egész munkafolyamat számára.
 ## 4. Jelenlegi üzleti folyamatok
-
+Az ügyfelek jelenleg e-mailben vagy közösségi üzenetküldő alkalmazásokon keresztül küldik el a nyersanyagokat és a vágási instrukciókat.  
+A vágók ezeket manuálisan rendszerezik, gyakran külön mappákban és táblázatokban tartják nyilván a projekteket.  
+Az adminisztrátorok e-mailben osztják ki a feladatokat a vágók között, ami nehezen követhető.  
+A projektek státuszának frissítése nem egységes módon történik, így gyakran hiányzik a naprakész információ.  
+A kommunikáció nem központosított, emiatt az üzenetek, fájlok és megjegyzések több helyen is elveszhetnek.  
+A határidők betartása nehézkes, mert nincs automatikus értesítés vagy figyelmeztető rendszer.  
+Az adminisztrátor manuálisan készít jelentéseket és kimutatásokat a folyamatokról.  
+A hibakezelés (pl. hiányzó fájlok, félreértett instrukciók) jellemzően személyes egyeztetéssel történik.  
+Nincs lehetőség valós idejű státuszfrissítésekre, így az ügyfelek gyakran bizonytalanok a projekt állapotát illetően.  
+A jelenlegi folyamat időigényes, széttagolt és hibalehetőségekkel teli.
 ## 5. Igényelt üzleti folyamatok
 
 ## 6. A rendszerre vonatkozó szabályok
