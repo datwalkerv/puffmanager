@@ -37,7 +37,21 @@
 * A rendszer képes a fájlokhoz kapcsolódó metaadatokat is tárolni (méret, formátum, feltöltő).
 * Minden kommunikáció biztonságosan kerül továbbításra a bizalmas információk védelmének érdekében.
 ## 6. Teljesítmény
-
+* A rendszer célja, hogy több projekt egyidejű kezelését is stabilan támogassa.
+* Az oldalak betöltési ideje nem haladhatja meg a 2 másodpercet normál hálózati környezetben.
+* A chat funkció valós idejű kommunikációt biztosít 1 másodpercen belüli késéssel.
+* A Kanban board frissítése aszinkron módon történik, minimális erőforrás-használattal.
+* A fájlfeltöltések hátterében futnak, hogy ne blokkolják a felhasználói élményt.
+* A rendszer adatbázisa indexeléssel optimalizált a gyors lekérdezésekhez.
+* A szerver oldali folyamatok képesek többfelhasználós, párhuzamos műveletek kiszolgálására.
+* Az értesítések és státuszfrissítések valós időben történnek WebSocket technológiával.
+* A rendszer automatikusan skálázható nagyobb felhasználói terhelés esetén.
+* A biztonsági mentések napi szinten készülnek, hogy adatvesztés ne történhessen.
+* A rendszer 99,5%-os rendelkezésre állást biztosít éves szinten.
+* Az erőforrás-használat optimalizált, így mobil eszközökön is gyorsan működik.
+* A memóriakezelés és gyorsítótárazás révén a navigáció gördülékeny.
+* A teljesítmény monitorozása folyamatos, így az admin értesülhet esetleges hibákról.
+* A **cél**, hogy a PuffManager nagy terhelés mellett is megbízhatóan és gyorsan működjön.
 ## 7. Biztonság
 
 ## 8. Kompatibilitás
