@@ -53,9 +53,43 @@
 * A teljesítmény monitorozása folyamatos, így az admin értesülhet esetleges hibákról.
 * A **cél**, hogy a PuffManager nagy terhelés mellett is megbízhatóan és gyorsan működjön.
 ## 7. Biztonság
-
+- A rendszer minden adatát titkosított (HTTPS + TLS 1.3) kapcsolaton keresztül továbbítja.  
+- A felhasználói jelszavak biztonságos, sózott és hash-elt formában kerülnek tárolásra (pl. bcrypt).  
+- Többszintű jogosultságkezelés biztosítja, hogy az ügyfelek, vágók és adminok csak a saját adataikhoz férjenek hozzá.  
+- Az inaktív felhasználók automatikusan kijelentkeztetésre kerülnek biztonsági időkorlát lejártakor.  
+- Az adminisztrátori műveletek naplózásra kerülnek audit célokra, visszakövethető módon.  
+- A rendszer védelmet nyújt brute force támadások ellen (pl. 5 sikertelen bejelentkezés után ideiglenes tiltás).  
+- A fájlfeltöltéseket vírusellenőrzés és méretkorlátozás védi.  
+- Az adatbázis hozzáférése korlátozott, kizárólag az alkalmazás szerver használhatja.  
+- Napi biztonsági mentések készülnek a teljes adatbázisról, és ezek titkosított formában tárolódnak.  
+- Az alkalmazás megfelel az adatvédelmi előírásoknak (GDPR).
 ## 8. Kompatibilitás
-
+- A PuffManager rendszer reszponzív kialakítású, asztali és mobil eszközön is teljes funkcionalitást biztosít.  
+- Támogatott böngészők: Google Chrome, Mozilla Firefox, Microsoft Edge, Safari (legutóbbi 2 verzió).  
+- A rendszer platformfüggetlen, Windows, macOS és Linux környezetben is működik.  
+- A backend REST API-kompatibilis, így más rendszerek is integrálhatók vele.  
+- Az alkalmazás támogatja a különböző képernyőfelbontásokat (min. 1280×720 px).  
+- A fájlfeltöltések és letöltések kompatibilisek minden modern operációs rendszerrel.  
+- A rendszer mobil nézetben is optimalizált elrendezést biztosít a Kanban boardhoz és chathez.  
 ## 9. UI Képernyőtervek - interakciók
-
+- **Bejelentkezés képernyő:** e-mail és jelszó mezők, hibás adatok esetén piros figyelmeztetés jelenik meg.  
+- **Dashboard:** szerepkörfüggő menü (ügyfél, vágó, admin). Kiemelt státuszjelzők és értesítések láthatók.  
+- **Projektfeltöltés oldal:** űrlap fájlfeltöltéssel, határidő és megjegyzés mezőkkel.  
+- **Kanban board:** drag & drop funkció a státuszok módosításához, valós idejű frissítéssel.  
+- **Chat modul:** projektenként külön szál, valós idejű üzenetküldéssel és olvasottsági jelöléssel.  
+- **Admin felület:** új ügyfelek, teamek és projektek kezelése, export funkciók elérhetők a menüből.  
+- **Értesítések:** kis harang ikon jelzi az új üzeneteket és státuszváltozásokat.  
+- **Biztonsági interakció:** kijelentkezés gomb, valamint automatikus időzített kijelentkeztetés inaktivitáskor.  
 ## 10. Fogalomtár
+| Fogalom | Jelentés |
+|----------|-----------|
+| **Ügyfél** | A rendszer felhasználója, aki projekteket rendel és követi azok státuszát. |
+| **Vágó** | A videóvágási feladatokat végző felhasználó. |
+| **Admin** | A rendszer menedzsere, aki új felhasználókat, projekteket és teameket hoz létre. |
+| **Projekt** | Egy videóvágási feladat, amelyhez határidő, leírás és fájlok tartoznak. |
+| **Kanban board** | Vizuális tábla, amely a projektek aktuális státuszát mutatja. |
+| **Dashboard** | A felhasználó kezdőoldala, ahol a legfontosabb adatok és műveletek elérhetők. |
+| **Státusz** | A projekt aktuális állapota (pl. “Folyamatban”, “Jóváhagyásra vár”, “Kész”). |
+| **Chat** | Valós idejű üzenetküldő modul a projektekhez kapcsolódó kommunikációhoz. |
+| **Team** | Az admin által létrehozott csoport, amely több vágóból állhat. |
+| **Metaadat** | A fájlhoz kapcsolódó kiegészítő információ (méret, formátum, feltöltés ideje). |
