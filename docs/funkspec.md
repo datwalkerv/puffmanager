@@ -53,16 +53,7 @@
 * A teljesítmény monitorozása folyamatos, így az admin értesülhet esetleges hibákról.
 * A **cél**, hogy a PuffManager nagy terhelés mellett is megbízhatóan és gyorsan működjön.
 ## 7. Biztonság
-- A rendszer minden adatát titkosított (HTTPS + TLS 1.3) kapcsolaton keresztül továbbítja.  
-- A felhasználói jelszavak biztonságos, sózott és hash-elt formában kerülnek tárolásra (pl. bcrypt).  
-- Többszintű jogosultságkezelés biztosítja, hogy az ügyfelek, vágók és adminok csak a saját adataikhoz férjenek hozzá.  
-- Az inaktív felhasználók automatikusan kijelentkeztetésre kerülnek biztonsági időkorlát lejártakor.  
-- Az adminisztrátori műveletek naplózásra kerülnek audit célokra, visszakövethető módon.  
-- A rendszer védelmet nyújt brute force támadások ellen (pl. 5 sikertelen bejelentkezés után ideiglenes tiltás).  
-- A fájlfeltöltéseket vírusellenőrzés és méretkorlátozás védi.  
-- Az adatbázis hozzáférése korlátozott, kizárólag az alkalmazás szerver használhatja.  
-- Napi biztonsági mentések készülnek a teljes adatbázisról, és ezek titkosított formában tárolódnak.  
-- Az alkalmazás megfelel az adatvédelmi előírásoknak (GDPR).
+
 ## 8. Kompatibilitás
 - A PuffManager rendszer reszponzív kialakítású, asztali és mobil eszközön is teljes funkcionalitást biztosít.  
 - Támogatott böngészők: Google Chrome, Mozilla Firefox, Microsoft Edge, Safari (legutóbbi 2 verzió).  
