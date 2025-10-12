@@ -47,7 +47,25 @@ A rendszer naplózza a felhasználói tevékenységeket, így visszakövethető 
 Az adminok automatikus riportokat exportálhatnak PDF vagy CSV formátumban.  
 A cél egy digitalizált, gyors és hibamentes projektmenedzsment-folyamat, amely minimális manuális beavatkozást igényel.
 ## 6. A rendszerre vonatkozó szabályok
-
+A rendszerhez csak regisztrált felhasználók férhetnek hozzá érvényes hitelesítéssel.  
+A felhasználók három szerepkörbe tartozhatnak: ügyfél, vágó, admin.  
+Minden szerepkör csak a saját adatait és feladatait érheti el.  
+Az adatbevitelek validációval történnek, hibás adat esetén a rendszer visszajelzést ad.  
+Minden projekt egyedi azonosítóval kerül tárolásra az adatbázisban.  
+A fájlokhoz metaadatok társulnak (feltöltő, formátum, méret, időpont).  
+Az üzenetküldések és státuszváltozások valós időben történnek WebSocket technológiával.  
+Az admin módosíthatja a rendszerben tárolt adatokat, de minden változás naplózásra kerül.  
+A rendszer automatikusan kijelentkezteti az inaktív felhasználókat biztonsági okokból.  
+Az adatmentés napi szinten történik, és visszaállítható hiba esetén.  
+A jelszavak titkosítva kerülnek tárolásra, megfelelve a GDPR előírásainak.  
+A fájlfeltöltések korlátozott méretűek és ellenőrzésen esnek át.  
+A Kanban board státuszai előre definiáltak, módosításukat csak a vágók és adminok végezhetik.  
+A rendszer minden frissítése aszinkron módon, oldal-újratöltés nélkül történik.  
+A hozzáférések naplózottak, és auditálhatók szükség esetén.  
+Az adminisztrátorok kizárólag biztonságos bejelentkezés után hajthatnak végre módosításokat.  
+A rendszer teljesítménye skálázható, hogy több felhasználót is kiszolgáljon egyidejűleg.  
+Az értesítések nem zavarhatják a felhasználói munkafolyamatot, de biztosítják a naprakész tájékoztatást.  
+A felhasználók adatainak biztonsága és a rendszer megbízhatósága elsődleges követelmény. 
 ## 7. Követelménylista
 
 ## 8. Üzelti folyamat modell
