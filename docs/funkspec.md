@@ -64,7 +64,13 @@
 - Napi biztonsági mentések készülnek a teljes adatbázisról, és ezek titkosított formában tárolódnak.  
 - Az alkalmazás megfelel az adatvédelmi előírásoknak (GDPR).
 ## 8. Kompatibilitás
- 
+ - A PuffManager rendszer reszponzív kialakítású, asztali és mobil eszközön is teljes funkcionalitást biztosít.  
+- Támogatott böngészők: Google Chrome, Mozilla Firefox, Microsoft Edge, Safari (legutóbbi 2 verzió).  
+- A rendszer platformfüggetlen, Windows, macOS és Linux környezetben is működik.  
+- A backend REST API-kompatibilis, így más rendszerek is integrálhatók vele.  
+- Az alkalmazás támogatja a különböző képernyőfelbontásokat (min. 1280×720 px).  
+- A fájlfeltöltések és letöltések kompatibilisek minden modern operációs rendszerrel.  
+- A rendszer mobil nézetben is optimalizált elrendezést biztosít a Kanban boardhoz és chathez.  
 ## 9. UI Képernyőtervek - interakciók
  
 ## 10. Fogalomtár
