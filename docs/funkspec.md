@@ -72,6 +72,13 @@
 - A fájlfeltöltések és letöltések kompatibilisek minden modern operációs rendszerrel.  
 - A rendszer mobil nézetben is optimalizált elrendezést biztosít a Kanban boardhoz és chathez.  
 ## 9. UI Képernyőtervek - interakciók
- 
+ - **Bejelentkezés képernyő:** e-mail és jelszó mezők, hibás adatok esetén piros figyelmeztetés jelenik meg.  
+- **Dashboard:** szerepkörfüggő menü (ügyfél, vágó, admin). Kiemelt státuszjelzők és értesítések láthatók.  
+- **Projektfeltöltés oldal:** űrlap fájlfeltöltéssel, határidő és megjegyzés mezőkkel.  
+- **Kanban board:** drag & drop funkció a státuszok módosításához, valós idejű frissítéssel.  
+- **Chat modul:** projektenként külön szál, valós idejű üzenetküldéssel és olvasottsági jelöléssel.  
+- **Admin felület:** új ügyfelek, teamek és projektek kezelése, export funkciók elérhetők a menüből.  
+- **Értesítések:** kis harang ikon jelzi az új üzeneteket és státuszváltozásokat.  
+- **Biztonsági interakció:** kijelentkezés gomb, valamint automatikus időzített kijelentkeztetés inaktivitáskor.  
 ## 10. Fogalomtár
 
