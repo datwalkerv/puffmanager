@@ -81,4 +81,15 @@
 - **Értesítések:** kis harang ikon jelzi az új üzeneteket és státuszváltozásokat.  
 - **Biztonsági interakció:** kijelentkezés gomb, valamint automatikus időzített kijelentkeztetés inaktivitáskor.  
 ## 10. Fogalomtár
-
+| Fogalom | Jelentés |
+|----------|-----------|
+| **Ügyfél** | A rendszer felhasználója, aki projekteket rendel és követi azok státuszát. |
+| **Vágó** | A videóvágási feladatokat végző felhasználó. |
+| **Admin** | A rendszer menedzsere, aki új felhasználókat, projekteket és teameket hoz létre. |
+| **Projekt** | Egy videóvágási feladat, amelyhez határidő, leírás és fájlok tartoznak. |
+| **Kanban board** | Vizuális tábla, amely a projektek aktuális státuszát mutatja. |
+| **Dashboard** | A felhasználó kezdőoldala, ahol a legfontosabb adatok és műveletek elérhetők. |
+| **Státusz** | A projekt aktuális állapota (pl. “Folyamatban”, “Jóváhagyásra vár”, “Kész”). |
+| **Chat** | Valós idejű üzenetküldő modul a projektekhez kapcsolódó kommunikációhoz. |
+| **Team** | Az admin által létrehozott csoport, amely több vágóból állhat. |
+| **Metaadat** | A fájlhoz kapcsolódó kiegészítő információ (méret, formátum, feltöltés ideje). |
