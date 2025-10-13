@@ -67,6 +67,21 @@ A rendszer teljesítménye skálázható, hogy több felhasználót is kiszolgá
 Az értesítések nem zavarhatják a felhasználói munkafolyamatot, de biztosítják a naprakész tájékoztatást.  
 A felhasználók adatainak biztonsága és a rendszer megbízhatósága elsődleges követelmény. 
 ## 7. Követelménylista
+A rendszerrel szemben az alábbi főbb követelmények kerülnek meghatározásra:
+
+- A felhasználók számára biztosított legyen a projektek egyszerű feltöltése, kezelése és nyomon követése.  
+- A rendszer támogassa a különböző szerepköröket (ügyfél, vágó, admin), megfelelő jogosultságkezeléssel.  
+- Az ügyfelek online űrlapon keresztül adhassanak le új projekteket, és tölthessék fel a szükséges fájlokat.  
+- A rendszer automatikusan rendelje a projekteket a megfelelő vágókhoz és teamekhez, az admin beavatkozása nélkül.  
+- A projektek előre definiált státuszokon (pl. „Új”, „Folyamatban”, „Jóváhagyás alatt”, „Kész”) haladjanak végig, a változások valós időben jelenjenek meg a Kanban boardon.  
+- Az ügyfelek és vágók között biztosított legyen a közvetlen kommunikáció a projekt saját chatfelületén.  
+- A rendszer automatikus értesítéseket küldjön minden fontos eseményről (új projekt, státuszváltás, új üzenet, fájlfeltöltés).  
+- Minden felhasználó rendelkezzen saját fiókkal, ahol megtekintheti projektjeit, üzeneteit és a hozzá kapcsolódó információkat.  
+- Az adatbevitel során a rendszer végezzen validációt, és hibás adatok esetén adjon visszajelzést.  
+- A felhasználói tevékenységek (státuszváltás, fájlfeltöltés, üzenetküldés stb.) naplózásra kerüljenek, visszakövethető módon.  
+- A rendszer automatikusan generáljon összefoglaló riportokat (pl. projektek száma, státuszok, teamek teljesítménye), melyek letölthetők és áttekinthető formátumban elérhetők.  
+- Az alkalmazás legyen reszponzív, biztonságos, gyors és skálázható, hogy egyszerre több felhasználót is kiszolgáljon.  
+- A platform megbízhatóan működjön, könnyen kezelhető legyen, és támogassa a későbbi fejlesztéseket, bővítéseket.  
 
 ## 8. Üzelti folyamat modell
 
