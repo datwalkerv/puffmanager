@@ -98,3 +98,17 @@ A rendszerrel szemben az alábbi főbb követelmények kerülnek meghatározásr
 <img src="images\flowchart.png" width="700" height="410" alt="Üzleti folyamat modell ábra" /> 
 
 ## 9. Fogalomszótár
+| Fogalom | Jelentés |
+|----------|-----------|
+| **Ügyfél** | Az a felhasználó, aki megrendeléseket ad le és feltölti a vágáshoz szükséges anyagokat. |
+| **Vágó** | Az a felhasználó, aki a kapott projektek feldolgozását, vágását és feltöltését végzi. |
+| **Admin** | A rendszer felügyelője, aki kezeli a felhasználókat, projekteket és teameket. |
+| **Projekt** | Egy konkrét megrendelés, amely tartalmazza a szükséges fájlokat, leírást, státuszt és kommunikációt. |
+| **Kanban board** | Vizuális tábla, amely a projektek státuszait oszlopokban jeleníti meg. |
+| **Chat modul** | A projektekhez tartozó kommunikációs felület az ügyfél és a vágó között. |
+| **Team** | Az admin által létrehozott csoport, amely ügyfeleket és vágókat kapcsol össze. |
+| **Státusz** | A projekt aktuális állapota a munkafolyamatban. |
+| **Értesítés** | Automatikus üzenet, amely a felhasználót informálja egy változásról. |
+| **Riport** | Az admin által generált kimutatás a projektek, felhasználók vagy státuszok adatairól. |
+| **Naplózás** | A rendszerben végzett tevékenységek rögzítése (felhasználói akciók, módosítások). |
+
