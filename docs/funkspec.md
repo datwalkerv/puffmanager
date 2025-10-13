@@ -1,6 +1,10 @@
 # PuffManager -  Funkcionális specifikáció
 
 ## 1. Bevezetés
+A PuffManager a PuffContent videóvágó ügynökség és ügyfelei közötti projektmenedzsmentet támogató online platform.  
+A rendszer célja, hogy leegyszerűsítse a munkafolyamatokat, átláthatóvá tegye a projektek státuszát és hatékony kommunikációt biztosítson az ügyfelek és a vágók között.  
+A platform automatizálja a projekt-hozzárendelést, a státuszkezelést és az értesítéseket, ezzel csökkentve az adminisztrációs terheket.  
+A fejlesztés fő szempontjai a megbízhatóság, a biztonság, a reszponzív felhasználói élmény és a jövőbeli bővíthetőség.
 
 ## 2. Rendszer áttekintés
 
