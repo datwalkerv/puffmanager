@@ -95,7 +95,7 @@ A rendszerrel szemben az alábbi főbb követelmények kerülnek meghatározásr
 9. **Ügyfél megtekinti és visszajelez**.  
 10. Ha jóváhagyás történik → státusz „Kész”.
 
-<img src="images\flowchart.png" width="700" height="410" alt="Üzleti folyamat modell ábra" /> 
+<img src="images\flowchart.png" width="1280" height="720" alt="Üzleti folyamat modell ábra" /> 
 
 ## 9. Fogalomszótár
 | Fogalom | Jelentés |
