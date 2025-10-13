@@ -13,6 +13,22 @@
 - A rendszer automatikusan hozzárendeli a projekteket a megfelelő teamhez, valós idejű értesítéseket küld, és biztosítja a naprakész átláthatóságot mindkét fél számára.
 
 ## 3. Felhasználói műveletek
+A rendszer két fő szereplőre épül: az **ügyfelekre** és a **vágókra**.
+
+**Ügyfél műveletek:**
+- Bejelentkezés a személyes fiókba.  
+- Új projekt leadása, leírás és nyersanyagok feltöltésével.  
+- A projektek státuszának nyomon követése a Kanban táblán.  
+- Kommunikáció a vágóval a projekt saját chatfelületén.  
+- A kész anyagok megtekintése és jóváhagyása.  
+
+**Vágó műveletek:**
+- Bejelentkezés és értesítések fogadása új vagy módosított projektekről.  
+- A projekt státuszának módosítása („Folyamatban”, „Jóváhagyás alatt”, „Kész”).  
+- Fájlok feltöltése és verziók kezelése.  
+- Kommunikáció az ügyféllel a chat modulon keresztül.  
+
+A felhasználói műveletek célja, hogy az ügyfelek és a PuffContent vágói között gördülékeny, átlátható és gyors együttműködés valósuljon meg, minimális adminisztrációs beavatkozással.
 
 ## 4. Rendszer reakciók
 * A rendszer a bejelentkezéskor azonosítja a felhasználói szerepkört (ügyfél, vágó, admin).
