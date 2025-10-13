@@ -84,5 +84,17 @@ A rendszerrel szemben az alábbi főbb követelmények kerülnek meghatározásr
 - A platform megbízhatóan működjön, könnyen kezelhető legyen, és támogassa a későbbi fejlesztéseket, bővítéseket.  
 
 ## 8. Üzelti folyamat modell
+1. **Ügyfél bejelentkezik** a rendszerbe.  
+2. **Új projektet hoz létre**, megadja a szükséges adatokat (cím, leírás, határidő) és **feltölti a fájlokat**.  
+3. **A rendszer értesíti az admint**, hogy új projekt érkezett.  
+4. **Az app autómatikusan hozzárendeli** a projektet egy **vágóhoz** és **teamhez**.  
+5. **Vágó értesítést kap**, majd **megkezdi a munkát**.  
+6. **A projekt státusza** automatikusan frissül a Kanban boardon („Folyamatban”).  
+7. **Kommunikáció** zajlik az ügyfél és a vágó között a **chatben**.  
+8. A **vágó feltölti** a kész verziót és státuszt vált („Jóváhagyás alatt”).  
+9. **Ügyfél megtekinti és visszajelez**.  
+10. Ha jóváhagyás történik → státusz „Kész”.
+
+<img src="images\flowchart.png" width="700" height="410" alt="Üzleti folyamat modell ábra" /> 
 
 ## 9. Fogalomszótár
