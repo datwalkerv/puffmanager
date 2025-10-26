@@ -9,9 +9,9 @@ Collaborative teamwork and project for the **Software Development Methodologies 
 ---
 
 ### Table of Contents:
-- [Requirements Specification](#)  
-- [Functional Specification](#)  
-- [System Design](#)  
+- [Requirements Specification](docs/kovspec.md)  
+- [Functional Specification](docs/funkspec.md)  
+- [System Design](docs/rendszerterv.md)  
 - [Testing Report](#)
 
 ---

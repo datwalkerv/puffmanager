@@ -1,4 +1,4 @@
-# FalatPont - Rendszerterv
+# Puffmanager - Rendszerterv
 
 ## 1. Bevezetés
 
