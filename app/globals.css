@@ -1,7 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
+.font-header{
+  font-family: "League Spartan", sans-serif;
+  font-weight: bold;
+}
+
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-yellow: #ffc53d;
+  --color-lightyellow: #ffe7b3;
+  --color-brown: #2f1f0d;
+  --color-gray: #6f6d66;
+  --color-darkgray: #212120;
+  --color-white: #eeeeec;
+  --color-dark: #111110;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -79,7 +96,7 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #111110;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
