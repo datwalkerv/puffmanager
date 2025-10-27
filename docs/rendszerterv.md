@@ -187,6 +187,7 @@ A PuffManager UI terve a **letisztultság**, **átláthatóság** és **hatékon
 A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivitást és egységes vizuális élményt szem előtt tartva.
 
 ### 5.1 Főbb nézetek
+<img src="images\fobb_nezetek.png" width="900" height="600" alt="Főbb nézetek ábra" />
 
 #### a) Bejelentkezés / Regisztráció
 - Középre igazított, kártya formátumú űrlap.  
