@@ -202,7 +202,12 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - Drag & drop funkcióval mozgatható kártyák.  
 - Az állapotváltás azonnal frissül a szerveren és a klienseknél.
 
+#### d) Projekt részletek
+- Teljes információs panel (leírás, határidő, státusz, Drive-link).  
+- Valós idejű **chatpanel** a kommunikációhoz.  
+- Fájlcsatolási lehetőség (Drive-link formában).
 
+  
 ## 6. Nem funkcionális tervek
 
 ## 7. Üzemeltetés és karbantartás
