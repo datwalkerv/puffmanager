@@ -178,7 +178,11 @@ Későbbi fejlesztési fázisban az értesítések e-mail és mobil push formáb
 - Minden művelet (bejelentkezés, státuszváltás, üzenetküldés) naplózásra kerül.  
 - Az admin számára külön **audit nézet** biztosítja a naplók idő- és felhasználó szerinti szűrését.  
 - A naplózás célja a **biztonság, hibakeresés és megfelelőség** biztosítása.
+
 ## 5. Felhasználói felület tervei
+
+A PuffManager UI terve a **letisztultság**, **átláthatóság** és **hatékonyság** elvei mentén készült.  
+A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivitást és egységes vizuális élményt szem előtt tartva.
 
 ## 6. Nem funkcionális tervek
 
