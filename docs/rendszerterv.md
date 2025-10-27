@@ -186,6 +186,11 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 
 ### 5.1 Főbb nézetek
 
+#### a) Bejelentkezés / Regisztráció
+- Középre igazított, kártya formátumú űrlap.  
+- Valós idejű validáció (`Zod`) és jelszó megjelenítés funkció.  
+- “Elfelejtett jelszó” opció a jövőbeni bővítéshez előkészítve.
+- 
 ## 6. Nem funkcionális tervek
 
 ## 7. Üzemeltetés és karbantartás
