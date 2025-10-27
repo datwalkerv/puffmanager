@@ -218,6 +218,10 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - Támogatja a **dark mode** megjelenítést és megfelel a **WCAG 2.1** szabványnak.  
 - Az UI interakciók **framer-motion** animációkkal támogatottak.
 
+### 5.3 Felhasználói élmény
+- Egységes tipográfia és színpaletta a márkaarculathoz igazítva.  
+- Minden művelet visszajelzéssel jár (toast, modal, loading state).  
+- Az egyszerű kezelhetőség biztosítja, hogy a PuffManager a videóvágó ügynökség munkáját gyorsabbá, átláthatóbbá és hatékonyabbá tegye.
 
 ## 6. Nem funkcionális tervek
 
