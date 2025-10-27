@@ -147,6 +147,8 @@ Az adatok JSON formátumban kommunikálnak a frontenddel.
 
 ## 4. Funkcionális tervek / folyamatok
 
+A rendszer fő folyamatai a projektmenedzsment életciklusát követik, a létrehozástól a lezárásig.
+
 ## 5. Felhasználói felület tervei
 
 ## 6. Nem funkcionális tervek
