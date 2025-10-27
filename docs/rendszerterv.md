@@ -96,6 +96,54 @@ A cél egy **rugalmas, skálázható és könnyen bővíthető** adattárolási 
 Az adatkezelés a **Mongoose** ORM segítségével történik, amely biztosítja a típusos sémákat és az adatvalidációt.  
 A relációkat referenciák (`ObjectId`) kezelik a kollekciók között.
 
+### 3.1 Kollekciók és sémák
+
+#### `users`
+| Mező | Típus | Leírás |
+|------|-------|--------|
+| `_id` | ObjectId | Egyedi azonosító |
+| `name` | String | Teljes név |
+| `email` | String | E-mail cím (egyedi) |
+| `password` | String | Bcrypt-tel hash-elt jelszó |
+| `role` | String | Felhasználói szerepkör (`client`, `editor`, `admin`) |
+| `createdAt` | Date | Regisztráció dátuma |
+| `lastLogin` | Date | Utolsó bejelentkezés ideje |
+
+#### `projects`
+| Mező | Típus | Leírás |
+|------|-------|--------|
+| `_id` | ObjectId | Egyedi azonosító |
+| `title` | String | Projekt neve |
+| `description` | String | Részletes leírás |
+| `status` | String | Státusz (`new`, `in_progress`, `review`, `completed`) |
+| `deadline` | Date | Határidő |
+| `clientId` | ObjectId | Ügyfél hivatkozás |
+| `editorId` | ObjectId | Vágó hivatkozás |
+| `driveLink` | String | Google Drive link |
+| `createdAt` | Date | Létrehozás dátuma |
+| `updatedAt` | Date | Utolsó módosítás ideje |
+
+#### `messages`
+| Mező | Típus | Leírás |
+|------|-------|--------|
+| `_id` | ObjectId | Egyedi azonosító |
+| `projectId` | ObjectId | Kapcsolódó projekt |
+| `senderId` | ObjectId | Küldő azonosító |
+| `content` | String | Üzenet szövege |
+| `timestamp` | Date | Küldés ideje |
+| `isRead` | Boolean | Olvasottság |
+
+#### `teams`
+| Mező | Típus | Leírás |
+|------|-------|--------|
+| `_id` | ObjectId | Egyedi azonosító |
+| `name` | String | Csapat neve |
+| `members` | [ObjectId] | Csapattagok azonosítói |
+| `createdBy` | ObjectId | Admin hivatkozás |
+| `createdAt` | Date | Létrehozás dátuma |
+
+A kollekciók indexelése biztosítja a gyors lekérdezéseket (`email`, `projectId`, `senderId`).  
+Az adatok JSON formátumban kommunikálnak a frontenddel.
 
 ## 4. Funkcionális tervek / folyamatok
 
