@@ -197,6 +197,11 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
   - **Vágó:** aktív projektek és értesítések.  
   - **Admin:** statisztikák, auditnapló, csapatkezelés.
  
+#### c) Kanban tábla
+- Oszlopok: *Új*, *Folyamatban*, *Ellenőrzés alatt*, *Kész*.  
+- Drag & drop funkcióval mozgatható kártyák.  
+- Az állapotváltás azonnal frissül a szerveren és a klienseknél.
+
 
 ## 6. Nem funkcionális tervek
 
