@@ -212,6 +212,12 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - Riportnézet a státuszok és aktivitások statisztikájával.  
 - Audit log megjelenítés szűrhető táblázatban.
 
+### 5.2 Reszponzív megjelenítés és UX
+- Mobilon egyoszlopos nézet, ikon alapú navigációval.  
+- Tableten és asztali nézetben oldalsávos menü.  
+- Támogatja a **dark mode** megjelenítést és megfelel a **WCAG 2.1** szabványnak.  
+- Az UI interakciók **framer-motion** animációkkal támogatottak.
+
 
 ## 6. Nem funkcionális tervek
 
