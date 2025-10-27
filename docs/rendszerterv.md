@@ -90,6 +90,13 @@ Ezzel a megoldással a **PuffManager** garantálja az **adatbiztonságot, megbí
 
 ## 3. Adatbázis terv
 
+A PuffManager adatkezelése **MongoDB** dokumentum-alapú adatbázison keresztül történik.  
+A cél egy **rugalmas, skálázható és könnyen bővíthető** adattárolási modell, amely támogatja a különböző projekt-, felhasználó- és üzenettípusokat.
+
+Az adatkezelés a **Mongoose** ORM segítségével történik, amely biztosítja a típusos sémákat és az adatvalidációt.  
+A relációkat referenciák (`ObjectId`) kezelik a kollekciók között.
+
+
 ## 4. Funkcionális tervek / folyamatok
 
 ## 5. Felhasználói felület tervei
