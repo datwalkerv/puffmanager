@@ -156,6 +156,16 @@ A rendszer fő folyamatai a projektmenedzsment életciklusát követik, a létre
 4. A státusz a folyamat előrehaladtával változik (`new` → `in_progress` → `review` → `completed`).  
 5. A változások a **Kanban táblán** valós időben frissülnek.
 
+### 4.2 Kommunikáció és értesítések
+- A projektalapú **chat** biztosítja a közvetlen ügyfél–vágó kommunikációt.  
+- Az üzenetek a `messages` kollekcióban tárolódnak, és **Server Actions** segítségével azonnal megjelennek.  
+- A rendszer értesítéseket küld:
+  - új üzenet érkezésekor,  
+  - státuszváltozás esetén,  
+  - új projekt létrejöttekor.  
+
+Későbbi fejlesztési fázisban az értesítések e-mail és mobil push formában is elérhetők lesznek.
+
 ## 5. Felhasználói felület tervei
 
 ## 6. Nem funkcionális tervek
