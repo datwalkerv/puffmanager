@@ -173,6 +173,11 @@ Későbbi fejlesztési fázisban az értesítések e-mail és mobil push formáb
   - **Vágó:** hozzárendelt projektek szerkesztése.  
   - **Admin:** felhasználók, projektek és teamek teljes körű kezelése.  
 - A jogosultságokat middleware szinten ellenőrzi a rendszer minden kérésnél.
+
+### 4.4 Audit és naplózás
+- Minden művelet (bejelentkezés, státuszváltás, üzenetküldés) naplózásra kerül.  
+- Az admin számára külön **audit nézet** biztosítja a naplók idő- és felhasználó szerinti szűrését.  
+- A naplózás célja a **biztonság, hibakeresés és megfelelőség** biztosítása.
 ## 5. Felhasználói felület tervei
 
 ## 6. Nem funkcionális tervek
