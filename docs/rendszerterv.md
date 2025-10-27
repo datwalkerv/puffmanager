@@ -207,7 +207,12 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - Valós idejű **chatpanel** a kommunikációhoz.  
 - Fájlcsatolási lehetőség (Drive-link formában).
 
-  
+#### e) Admin felület
+- CRUD műveletek felhasználókon, teameken és projekteken.  
+- Riportnézet a státuszok és aktivitások statisztikájával.  
+- Audit log megjelenítés szűrhető táblázatban.
+
+
 ## 6. Nem funkcionális tervek
 
 ## 7. Üzemeltetés és karbantartás
