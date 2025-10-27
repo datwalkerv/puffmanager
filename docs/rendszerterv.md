@@ -166,6 +166,13 @@ A rendszer fő folyamatai a projektmenedzsment életciklusát követik, a létre
 
 Későbbi fejlesztési fázisban az értesítések e-mail és mobil push formában is elérhetők lesznek.
 
+### 4.3 Felhasználó- és szerepkörkezelés
+- Hitelesítés: **BetterAuth** segítségével, session tokennel.  
+- Jogosultságkezelés:  
+  - **Ügyfél:** saját projektjeinek kezelése és chatelés.  
+  - **Vágó:** hozzárendelt projektek szerkesztése.  
+  - **Admin:** felhasználók, projektek és teamek teljes körű kezelése.  
+- A jogosultságokat middleware szinten ellenőrzi a rendszer minden kérésnél.
 ## 5. Felhasználói felület tervei
 
 ## 6. Nem funkcionális tervek
