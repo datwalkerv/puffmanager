@@ -190,7 +190,14 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - Középre igazított, kártya formátumú űrlap.  
 - Valós idejű validáció (`Zod`) és jelszó megjelenítés funkció.  
 - “Elfelejtett jelszó” opció a jövőbeni bővítéshez előkészítve.
-- 
+
+#### b) Kezdőlap (Dashboard)
+- Szerepkör-alapú nézet:  
+  - **Ügyfél:** saját projektek listája.  
+  - **Vágó:** aktív projektek és értesítések.  
+  - **Admin:** statisztikák, auditnapló, csapatkezelés.
+ 
+
 ## 6. Nem funkcionális tervek
 
 ## 7. Üzemeltetés és karbantartás
