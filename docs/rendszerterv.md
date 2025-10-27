@@ -149,6 +149,8 @@ Az adatok JSON formátumban kommunikálnak a frontenddel.
 
 A rendszer fő folyamatai a projektmenedzsment életciklusát követik, a létrehozástól a lezárásig.
 
+<img src="images\projektletrehozasa.png" width="500" height="400" alt="Projektfolyamat ábra" />
+
 ### 4.1 Projekt létrehozása és kezelése
 1. Az **ügyfél** új projektet hoz létre (cím, leírás, határidő, Drive-link megadása).  
 2. Az adatokat a **Zod** validálja, majd a projekt bekerül a `projects` kollekcióba.  
