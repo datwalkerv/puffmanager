@@ -149,6 +149,13 @@ Az adatok JSON formátumban kommunikálnak a frontenddel.
 
 A rendszer fő folyamatai a projektmenedzsment életciklusát követik, a létrehozástól a lezárásig.
 
+### 4.1 Projekt létrehozása és kezelése
+1. Az **ügyfél** új projektet hoz létre (cím, leírás, határidő, Drive-link megadása).  
+2. Az adatokat a **Zod** validálja, majd a projekt bekerül a `projects` kollekcióba.  
+3. Az **admin** hozzárendeli a megfelelő vágót.  
+4. A státusz a folyamat előrehaladtával változik (`new` → `in_progress` → `review` → `completed`).  
+5. A változások a **Kanban táblán** valós időben frissülnek.
+
 ## 5. Felhasználói felület tervei
 
 ## 6. Nem funkcionális tervek
