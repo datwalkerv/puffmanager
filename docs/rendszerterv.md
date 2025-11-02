@@ -227,6 +227,46 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - Az egyszerű kezelhetőség biztosítja, hogy a PuffManager a videóvágó ügynökség munkáját gyorsabbá, átláthatóbbá és hatékonyabbá tegye.
 
 ## 6. Nem funkcionális tervek
+- A PuffManager fejlesztése során kiemelt szempont a stabilitás, a biztonság és a skálázhatóság.
+- A nem funkcionális követelmények biztosítják, hogy a rendszer hosszú távon is megbízhatóan, hatékonyan és fenntarthatóan működjön.
+
+### 6.1 Teljesítmény
+- A rendszer célja, hogy a felhasználói műveletek válaszideje átlagosan ne haladja meg az 500 ms-ot.
+- A MongoDB indexelések optimalizálják a lekérdezéseket, a Next.js SSR és cache rétege pedig csökkenti a szerverterhelést.
+- A websockets alapú kommunikáció minimális adatforgalommal frissíti a valós idejű chatet és Kanban táblát.
+
+### 6.2 Biztonság
+- A PuffManager HTTPS és TLS 1.3 protokollt alkalmaz az adatvédelem érdekében.
+- Minden jelszó bcrypt algoritmussal kerül tárolásra, és a session-kezelés titkosított JWT tokenen alapul.
+- A hozzáférések szerepköralapúak (RBAC), a kritikus műveletek pedig audit logba kerülnek.
+- Az adatbázis biztonsági mentése naponta automatikusan megtörténik.
+
+### 6.3 Megbízhatóság és rendelkezésre állás
+- A rendszer célzott rendelkezésre állása 99,5%.
+- A backend futtatása több konténeres Docker környezetben történik, így egy komponens hibája nem okoz teljes kiesést.
+- Az alkalmazás automatikusan újraindul hibás folyamat esetén (PM2 / Docker restart policy).
+
+### 6.4 Skálázhatóság
+- A horizontális skálázás Kubernetes segítségével történik, lehetővé téve a dinamikus terheléselosztást.
+- A MongoDB Atlas rugalmas skálázási lehetőséget biztosít a növekvő adat- és felhasználószámhoz.
+- A rendszer architektúrája moduláris, így új funkciók később külön mikroszolgáltatásként is integrálhatók.
+
+### 6.5 Karbantarthatóság
+- A kód TypeScript alapon, szigorú lintelési szabályokkal készül (ESLint, Prettier).
+- A moduláris mappastruktúra és egységtesztek (Jest) segítik a hibák gyors azonosítását.
+- Az architektúra dokumentálva van, és minden fő komponenshez külön README tartozik.
+- A CI/CD pipeline automatikus tesztfuttatást végez minden commit előtt.
+
+### 6.6 Használhatóság
+- A felület reszponzív, egyszerűen kezelhető, és megfelel a WCAG 2.1 AA szabványnak.
+- Az interakciók vizuális visszajelzésekkel (loading state, toast, modal) támogatottak.
+- A dizájn a hatékonyságot szolgálja: minden művelet maximum három kattintással elérhető.
+- A dark mode és többnyelvűség támogatása jövőbeli fejlesztésre előkészítve.
+### 6.7 Hordozhatóság és kompatibilitás
+- A rendszer platformfüggetlen: Windows, macOS és Linux környezetben is futtatható.
+- A böngészőtámogatás kiterjed a Chrome, Firefox, Edge és Safari legfrissebb verzióira.
+- Az alkalmazás Docker image formában szállítható, könnyen telepíthető bármely felhőszolgáltatóra.
+- Az adatkommunikáció JSON alapú, így külső integrációkhoz is illeszthető.
 
 ## 7. Üzemeltetés és karbantartás
 
