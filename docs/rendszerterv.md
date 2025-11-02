@@ -274,7 +274,7 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - A PuffManager folyamatos, 24/7 elérhetőséget igénylő üzleti környezetben működik.
 - Az üzemeltetési és karbantartási eljárások célja a megbízható szolgáltatás biztosítása és a kiesési idők minimalizálása.
 
-<img src="images\abra7pont.png" width="1000" height="180" alt="Üzemeltetés és karbantartás ábra" />
+<img src="images\abra7pont.png" width="1000" height="350" alt="Üzemeltetés és karbantartás ábra" />
 
 ### 7.1 Rendszerkörnyezet
 - Az alkalmazás Docker konténerekben fut, Node.js 20 és MongoDB 7 környezetben.
