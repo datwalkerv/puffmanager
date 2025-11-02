@@ -230,6 +230,8 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - A PuffManager fejlesztése során kiemelt szempont a stabilitás, a biztonság és a skálázhatóság.
 - A nem funkcionális követelmények biztosítják, hogy a rendszer hosszú távon is megbízhatóan, hatékonyan és fenntarthatóan működjön.
 
+<img src="images\abra6pont.png" width="500" height="400" alt="Nem Funk Tervek ábra" />
+
 ### 6.1 Teljesítmény
 - A rendszer célja, hogy a felhasználói műveletek válaszideje átlagosan ne haladja meg az 500 ms-ot.
 - A MongoDB indexelések optimalizálják a lekérdezéseket, a Next.js SSR és cache rétege pedig csökkenti a szerverterhelést.
@@ -271,7 +273,9 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 ## 7. Üzemeltetés és karbantartás
 - A PuffManager folyamatos, 24/7 elérhetőséget igénylő üzleti környezetben működik.
 - Az üzemeltetési és karbantartási eljárások célja a megbízható szolgáltatás biztosítása és a kiesési idők minimalizálása.
- 
+
+<img src="images\abra7pont.png" width="500" height="170" alt="Üzemeltetés és karbantartás ábra" />
+
 ### 7.1 Rendszerkörnyezet
 - Az alkalmazás Docker konténerekben fut, Node.js 20 és MongoDB 7 környezetben.
 - A hosztolás kezdetben Vercel (frontend) és MongoDB Atlas (adatbázis) platformokon történik.
