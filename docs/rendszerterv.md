@@ -269,4 +269,51 @@ A dizájn **TailwindCSS** és **shadcn/ui** komponensekre épül, a reszponzivit
 - Az adatkommunikáció JSON alapú, így külső integrációkhoz is illeszthető.
 
 ## 7. Üzemeltetés és karbantartás
+- A PuffManager folyamatos, 24/7 elérhetőséget igénylő üzleti környezetben működik.
+- Az üzemeltetési és karbantartási eljárások célja a megbízható szolgáltatás biztosítása és a kiesési idők minimalizálása.
 
+### 7.1 Rendszerkörnyezet
+- Az alkalmazás Docker konténerekben fut, Node.js 20 és MongoDB 7 környezetben.
+- A hosztolás kezdetben Vercel (frontend) és MongoDB Atlas (adatbázis) platformokon történik.
+- A backend futtatható saját VPS-en vagy Kubernetes clusterben is, automatikus skálázással.
+
+### 7.2 Telepítés és frissítés
+- A rendszer telepítése CI/CD folyamaton keresztül történik (GitHub Actions).
+- Minden commit után automatikus build, teszt és staging deploy fut le.
+- A production környezetbe csak manuális jóváhagyással kerülhet kiadás.
+- A frissítések verziózottak (semantic versioning), és changelogban dokumentáltak.
+
+### 7.3 Mentés és helyreállítás
+- Az adatbázis napi mentése automatikusan történik, 30 napos megőrzéssel.
+- A mentések titkosítva tárolódnak (AES-256), és külső tárhelyre replikálódnak.
+- Helyreállítás teszt havonta egyszer végrehajtásra kerül a mentések ellenőrzésére.
+
+### 7.4 Monitorozás és naplózás
+- A rendszer teljesítményét Prometheus és Grafana segítségével figyelik.
+- A logok a Loki rendszerbe kerülnek, ahol idő- és típus szerint kereshetők.
+- A hibák automatikusan riasztást generálnak (Slack / e-mail integráció).
+- Az audit logok 1 évig megőrzésre kerülnek, megfelelve a GDPR előírásoknak.
+
+### 7.5 Hibakezelés és támogatás
+- A rendszer hibái kategorizáltak (kritikus / magas / alacsony prioritás).
+- A hibajelentések Jira alapú hibakövető rendszerben kerülnek rögzítésre.
+- A javításokat staging környezetben validálják, majd élesítés előtt tesztelik.
+- A felhasználók dedikált támogatási e-mail címen keresztül jelezhetnek problémát.
+
+### 7.6 Teljesítményoptimalizálás
+- A cache réteg (Redis) gyorsítja a gyakran használt adatok elérését.
+- A képek és statikus erőforrások CDN-en keresztül kerülnek kiszolgálásra.
+- A lekérdezések és indexelések negyedévente teljesítmény-auditon esnek át.
+- A nem használt projektek archív státuszba kerülnek a terhelés csökkentése érdekében.
+
+### 7.7 Biztonsági frissítések
+- A függőségek automatikus auditja hetente lefut (npm audit / Dependabot).
+- A sérülékenységek javítása 48 órán belül megtörténik.
+- Az admin hozzáférések kétfaktoros hitelesítéssel védettek.
+- Az SSL tanúsítványok automatikusan megújulnak (Let’s Encrypt).
+
+### 7.8 Dokumentáció és továbbfejlesztés
+- Az üzemeltetési folyamatok, API endpointok és konfigurációk dokumentálva vannak.
+- A fejlesztői kézikönyv tartalmazza a telepítés, tesztelés és release lépéseit.
+- A rendszer későbbi modulbővítései (pl. mobilapp, AI-vágás asszisztens) a jelenlegi architektúrára építhetők.
+- A PuffManager üzemeltetése így hosszú távon is biztonságos, fenntartható és rugalmas marad.
