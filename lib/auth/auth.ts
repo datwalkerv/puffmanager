@@ -47,11 +47,6 @@ export const auth = betterAuth({
         email.trim().toLowerCase()
       );
       const email = ctx.body?.email?.toLowerCase();
-
-      const allowedEmails = rawEmails.map((email) =>
-        email.trim().toLowerCase()
-      );
-      const email = ctx.body?.email?.toLowerCase();
       if (!email || !allowedEmails.includes(email)) {
         throw new APIError("FORBIDDEN", {
           message: "This email is not allowed to register.",
