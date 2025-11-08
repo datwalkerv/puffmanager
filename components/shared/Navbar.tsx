@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { toast } from "sonner";
+import { UserIcon } from "lucide-react";
 
 export default function Navbar() {
   const { data: session } = useSession();
@@ -13,7 +14,7 @@ export default function Navbar() {
   return (
     <nav className="w-full p-4 flex justify-around items-center border-b border-white/10">
       <Link href="/" className="flex items-center gap-2">
-        <h1 className="text-2xl font-header text-yellow">puffmanager</h1>
+        <h1 className="text-xl font-header text-white/80">puff</h1>
       </Link>
       {session ? (
         <>
@@ -29,12 +30,13 @@ export default function Navbar() {
           </Button>
         </>
       ) : (
-        <div className="flex gap-2">
+        <div className="flex gap-4 items-center text-white/80 text-sm">
+          <Link href="#">Portfolio</Link>
+          <Link href="#">Process</Link>
+          <Link href="#">Review</Link>
+          <Link href="#">Pricing</Link>
           <Link href="/login">
-            <Button>Sign In</Button>
-          </Link>
-          <Link href="/register">
-            <Button variant="outline">Sign Up</Button>
+            <UserIcon className="w-auto h-5" />
           </Link>
         </div>
       )}
