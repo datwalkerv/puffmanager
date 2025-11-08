@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -18,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn } from "@/lib/auth/auth-client";
+import Link from "next/link";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -92,13 +94,19 @@ export default function LoginPage() {
                 </p>
               )}
             </div>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Signing in…" : "Sign In"}
+            </Button>
           </div>
         </CardContent>
 
-        <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Signing in…" : "Sign In"}
-          </Button>
+        <CardFooter className="flex-col gap-2 mt-6">
+            <CardDescription className="text-center text-sm">
+                Don't have an account?{" "}
+                <Link href="/register" className="text-yellow hover:underline">
+                    Sign up
+                </Link>
+            </CardDescription>
         </CardFooter>
       </form>
     </Card>
