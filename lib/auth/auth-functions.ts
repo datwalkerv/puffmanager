@@ -5,7 +5,7 @@ export async function getSession() {
   const session = await auth.api.getSession({
     headers: await headers(),
   })
-  
+
   return session
 }
 
@@ -22,6 +22,11 @@ export async function getCurrentUser() {
 export async function isAdmin() {
   const user = await getCurrentUser()
   return user?.role === "admin"
+}
+
+export async function getRole() {
+  const user = await getCurrentUser()
+  return user?.role ?? null
 }
 
 export const notAuthenticatedObject = {
