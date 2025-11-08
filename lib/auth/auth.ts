@@ -31,28 +31,34 @@ export const auth = betterAuth({
     }),
   ],
   hooks: {
-        before: createAuthMiddleware(async (ctx) => {
-            if (ctx.path !== "/register") {
-                return;
-            }
+    before: createAuthMiddleware(async (ctx) => {
+      if (ctx.path !== "/sign-up/email") {
+        return;
+      }
+      const raw = process.env.ALLOWED_EMAILS?.replace(/^['"]|['"]$/g, "");
+      const rawEmails = raw?.split("|");
+      if (!rawEmails || rawEmails.length === 0) {
+        throw new APIError("INTERNAL_SERVER_ERROR", {
+          message: "No allowed emails configured on the server.",
+        });
+      }
 
-            const rawEmails = process.env.ALLOWED_EMAILS?.split("|");
-            if (!rawEmails || rawEmails.length === 0) {
-                throw new APIError("INTERNAL_SERVER_ERROR", {
-                    message: "No allowed emails configured on the server.",
-                });
-            }
+      const allowedEmails = rawEmails.map((email) =>
+        email.trim().toLowerCase()
+      );
+      const email = ctx.body?.email?.toLowerCase();
 
-            const allowedEmails = rawEmails.map(email => email.trim().toLowerCase());
-            const email = ctx.body?.email?.toLowerCase();
-
-            if (!email || !allowedEmails.includes(email)) {
-                throw new APIError("FORBIDDEN", {
-                    message: "This email is not allowed to register.",
-                });
-            }
-        }),
-    },
+      const allowedEmails = rawEmails.map((email) =>
+        email.trim().toLowerCase()
+      );
+      const email = ctx.body?.email?.toLowerCase();
+      if (!email || !allowedEmails.includes(email)) {
+        throw new APIError("FORBIDDEN", {
+          message: "This email is not allowed to register.",
+        });
+      }
+    }),
+  },
 });
 
 export {client, db}
