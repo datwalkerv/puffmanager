@@ -3,6 +3,7 @@ import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { admin as adminPlugin } from "better-auth/plugins";
 import { ac, admin, user, editor } from "@/lib/auth/permissions";
+import { createAuthMiddleware, APIError } from "better-auth/api";
 
 const client = new MongoClient(process.env.MONGODB_URI as string);
 const db = client.db();
@@ -29,6 +30,29 @@ export const auth = betterAuth({
       },
     }),
   ],
+  hooks: {
+        before: createAuthMiddleware(async (ctx) => {
+            if (ctx.path !== "/register") {
+                return;
+            }
+
+            const rawEmails = process.env.ALLOWED_EMAILS?.split("|");
+            if (!rawEmails || rawEmails.length === 0) {
+                throw new APIError("INTERNAL_SERVER_ERROR", {
+                    message: "No allowed emails configured on the server.",
+                });
+            }
+
+            const allowedEmails = rawEmails.map(email => email.trim().toLowerCase());
+            const email = ctx.body?.email?.toLowerCase();
+
+            if (!email || !allowedEmails.includes(email)) {
+                throw new APIError("FORBIDDEN", {
+                    message: "This email is not allowed to register.",
+                });
+            }
+        }),
+    },
 });
 
 export {client, db}
