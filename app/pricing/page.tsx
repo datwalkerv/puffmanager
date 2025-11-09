@@ -25,3 +25,29 @@ const plans = [
         ],
     },
 ];
+
+export default function PricingPage() {
+    return (
+        <main className="min-h-screen flex flex-col items-center justify-center p-6">
+            <h1 className="text-4xl font-bold mb-10">Pricing Plans</h1>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-5xl">
+                {plans.map((plan) => (
+                    <div
+                        key={plan.name}
+                        className="border rounded-2xl p-6 shadow-md hover:shadow-lg transition bg-white dark:bg-neutral-900"
+                    >
+                        <h2 className="text-2xl font-semibold mb-2">{plan.name}</h2>
+                        <p className="text-xl mb-4">{plan.price}</p>
+                        <ul className="space-y-1">
+                            {plan.features.map((f) => (
+                                <li key={f} className="text-gray-700 dark:text-gray-300">
+                                    • {f}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </main>
+    );
+}
