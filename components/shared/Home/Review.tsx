@@ -1,6 +1,6 @@
 export default function Review() {
     return (
-        <main className="min-h-screen flex flex-col items-center justify-center p-6">
+        <main className="min-h-screen flex flex-col items-center justify-center p-6" id="review">
             <div className="font-header text-2xl text-yellow">Project Review</div>
             <p className="text-gray-700 dark:text-gray-300 text-center max-w-2xl mb-6">
                 The review section will allow clients and editors to finalize projects.

@@ -28,7 +28,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-6">
+    <main className="min-h-screen flex flex-col items-center justify-center p-6" id="pricing">
       <h1 className="text-4xl font-bold mb-10">Pricing Plans</h1>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 w-full max-w-5xl">
         {plans.map((plan) => (
