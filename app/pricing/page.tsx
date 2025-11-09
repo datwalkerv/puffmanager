@@ -34,7 +34,9 @@ export default function PricingPage() {
                 {plans.map((plan) => (
                     <div
                         key={plan.name}
-                        className="border rounded-2xl p-6 shadow-md hover:shadow-lg transition bg-white dark:bg-neutral-900"
+                        className="border rounded-2xl p-6 shadow-md bg-white dark:bg-neutral-900
+                       transition-transform duration-300 hover:scale-105 hover:shadow-xl
+                       hover:border-blue-500 dark:hover:border-blue-400"
                     >
                         <h2 className="text-2xl font-semibold mb-2">{plan.name}</h2>
                         <p className="text-xl mb-4">{plan.price}</p>
