@@ -1,4 +1,4 @@
-export default function PortfolioPage() {
+export default function Portfolio() {
     return (
         <main className="min-h-screen flex flex-col items-center justify-center p-6">
             <div className="font-header text-2xl text-yellow">Portfolio</div>
