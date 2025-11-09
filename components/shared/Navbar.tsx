@@ -31,7 +31,7 @@ export default function Navbar() {
         </>
       ) : (
         <div className="flex gap-4 items-center text-white/80 text-sm">
-          <Link href="#">Portfolio</Link>
+          <Link href="/portfolio">Portfolio</Link>
           <Link href="#">Process</Link>
           <Link href="#">Review</Link>
           <Link href="/pricing">Pricing</Link>
