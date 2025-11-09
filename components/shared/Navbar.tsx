@@ -34,7 +34,7 @@ export default function Navbar() {
           <Link href="#">Portfolio</Link>
           <Link href="#">Process</Link>
           <Link href="#">Review</Link>
-          <Link href="#">Pricing</Link>
+          <Link href="/pricing">Pricing</Link>
           <Link href="/login">
             <UserIcon className="w-auto h-5" />
           </Link>
