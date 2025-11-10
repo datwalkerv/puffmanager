@@ -1,5 +1,6 @@
 import GetInTouch from "@/components/shared/Home/Contact";
 import FAQ from "@/components/shared/Home/Faq";
+import Footer from "@/components/shared/Home/Footer";
 import Hero from "@/components/shared/Home/Hero";
 import Portfolio from "@/components/shared/Home/Portfolio";
 import Pricing from "@/components/shared/Home/Pricing";
@@ -17,6 +18,7 @@ export default function Home() {
       <Pricing />
       <FAQ />
       <GetInTouch />
+      <Footer />
     </div>
   );
 }
