@@ -2,14 +2,15 @@
 
 import { useSession, signOut } from "@/lib/auth/auth-client";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { toast } from "sonner";
-import { UserIcon } from "lucide-react";
+import { LogOutIcon, UserIcon } from "lucide-react";
 
 export default function Navbar() {
   const { data: session } = useSession();
   const router = useRouter();
+
+  console.log(session);
 
   return (
     <nav className="w-full p-4 flex justify-around items-center border-b border-white/10 sticky top-0 bg-dark/50 backdrop-blur-md z-50">
@@ -18,11 +19,10 @@ export default function Navbar() {
       </Link>
       {session ? (
         <div className="flex gap-4 items-center text-white/80 text-sm">
-          <Link href="/portfolio">Portfolio</Link>
-          <Link href="/process">Process</Link>
-          <Link href="/reviews">Review</Link>
-          <Link href="/pricing">Pricing</Link>
-          <UserIcon
+          <Link href="/dashboard">Kanban</Link>
+          <Link href="/projects">Projects</Link>
+          {session.user.role === "admin" && <Link href="/admin">Admin</Link>}
+          <LogOutIcon
             className="w-auto h-5"
             onClick={() => {
               signOut();
