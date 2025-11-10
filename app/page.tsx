@@ -1,3 +1,4 @@
+import GetInTouch from "@/components/shared/Home/Contact";
 import FAQ from "@/components/shared/Home/Faq";
 import Hero from "@/components/shared/Home/Hero";
 import Portfolio from "@/components/shared/Home/Portfolio";
@@ -15,6 +16,7 @@ export default function Home() {
       <Reviews />
       <Pricing />
       <FAQ />
+      <GetInTouch />
     </div>
   );
 }
