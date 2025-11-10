@@ -47,8 +47,8 @@ export default function Reviews() {
   return (
     <section className="relative bg-gradient-to-b from-dark via-darkgray to-dark text-white py-24 overflow-hidden">
       <div className="text-center mb-14">
-        <p className="text-yellow text-lg font-medium mb-2">Testimonials</p>
-        <h2 className="text-3xl md:text-4xl font-semibold">
+        <p className="font-header text-2xl text-yellow mb-2">Testimonials</p>
+        <h2 className="font-header text-4xl md:text-6xl w-3/4 mx-auto">
           What our clients say about us
         </h2>
       </div>

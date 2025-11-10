@@ -1,3 +1,4 @@
+import FAQ from "@/components/shared/Home/Faq";
 import Hero from "@/components/shared/Home/Hero";
 import Portfolio from "@/components/shared/Home/Portfolio";
 import Pricing from "@/components/shared/Home/Pricing";
@@ -13,6 +14,7 @@ export default function Home() {
       <Process />
       <Reviews />
       <Pricing />
+      <FAQ />
     </div>
   );
 }

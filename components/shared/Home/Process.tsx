@@ -72,10 +72,11 @@ export default function Process() {
     <section
       ref={sectionRef}
       className="relative min-h-screen flex flex-col items-center justify-center text-white px-6 py-24"
+      id="process"
     >
       <div className="text-center mb-16">
         <p className="font-header text-yellow-400 text-2xl font-medium mb-2">Process</p>
-        <h2 className="font-header text-4xl md:text-6xl w-3/4 mx-auto font-semibold">
+        <h2 className="font-header text-4xl md:text-6xl w-3/4 mx-auto">
           Because great work deserves great execution.
         </h2>
       </div>
