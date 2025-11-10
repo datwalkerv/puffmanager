@@ -1,4 +1,5 @@
 import { CreateOrganization } from "@/components/shared/Admin/create-org";
+import { ListOrganizations } from "@/components/shared/Admin/list-org";
 import {
   getCurrentUser,
   isAdmin,
@@ -13,8 +14,9 @@ export default async function Dashboard() {
   if (!valid || !user || !admin) redirect("/login");
 
   return (
-    <div className="">
+    <div className="flex flex-col gap-4">
       Admin
+      <ListOrganizations />
       <CreateOrganization />
     </div>
   );
