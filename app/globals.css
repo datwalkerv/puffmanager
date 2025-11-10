@@ -25,7 +25,7 @@ html {
 }
 
 @theme {
-    --animate-gradient-x: gradient-x 3s ease infinite;
+    --animate-gradient-x: gradient-x 6s ease infinite;
     
     @keyframes gradient-x {
         0% {

@@ -41,7 +41,7 @@ export default function Portfolio() {
 
   return (
     <main
-      className="min-h-screen flex flex-col items-center justify-center p-6 bg-darkgray"
+      className="min-h-screen flex flex-col items-center justify-center p-6 bg-gradient-to-b from-dark via-darkgray to-dark"
       id="portfolio"
     >
       <h2 className="font-header text-4xl md:text-6xl font-bold mb-16 text-center tracking-tight">

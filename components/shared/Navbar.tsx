@@ -20,7 +20,7 @@ export default function Navbar() {
         <div className="flex gap-4 items-center text-white/80 text-sm">
           <Link href="/portfolio">Portfolio</Link>
           <Link href="/process">Process</Link>
-          <Link href="/review">Review</Link>
+          <Link href="/reviews">Review</Link>
           <Link href="/pricing">Pricing</Link>
           <UserIcon
             className="w-auto h-5"
@@ -36,7 +36,7 @@ export default function Navbar() {
         <div className="flex gap-4 items-center text-white/80 text-sm">
           <Link href="/#portfolio">Portfolio</Link>
           <Link href="/#process">Process</Link>
-          <Link href="/#review">Review</Link>
+          <Link href="/#reviews">Reviews</Link>
           <Link href="/#pricing">Pricing</Link>
           <Link href="/login">
             <UserIcon className="w-auto h-5" />
