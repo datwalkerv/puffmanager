@@ -10,8 +10,6 @@ export default function Navbar() {
   const { data: session } = useSession();
   const router = useRouter();
 
-  console.log(session);
-
   return (
     <nav className="w-full p-4 flex justify-around items-center border-b border-white/10 sticky top-0 bg-dark/50 backdrop-blur-md z-50">
       <Link href="/" className="flex items-center gap-2">

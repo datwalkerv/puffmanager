@@ -1,7 +1,7 @@
 import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
-import { admin as adminPlugin } from "better-auth/plugins";
+import { admin as adminPlugin, organization } from "better-auth/plugins";
 import { ac, admin, user, editor } from "@/lib/auth/permissions";
 import { createAuthMiddleware, APIError } from "better-auth/api";
 
@@ -29,6 +29,7 @@ export const auth = betterAuth({
         editor,
       },
     }),
+    organization() 
   ],
   hooks: {
     before: createAuthMiddleware(async (ctx) => {
