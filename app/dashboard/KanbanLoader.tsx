@@ -1,10 +1,9 @@
-import { redirect } from "next/navigation";
+'use client';
 
-export default function KanbanBoard() {
+import dynamic from 'next/dynamic';
 
-    return (
-        <div className="flex gap-4 overflow-x-auto">
-           <h1>KanbanBoard</h1>
-        </div>
-    );
+const KanbanBoard = dynamic(() => import('./kanban-board'), { ssr: false });
+
+export default function KanbanLoader() {
+    return <KanbanBoard />;
 }
