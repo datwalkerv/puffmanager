@@ -9,28 +9,38 @@ import {
     verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Plus, Trash2 } from 'lucide-react';
+import { Plus, Trash2, Calendar } from 'lucide-react';
+
+interface Task {
+    id: string;
+    name: string;
+    deadline?: string;
+}
 
 function TaskCard({
-                      id,
+                      task,
                       onDelete,
                       onEdit,
                   }: {
-    id: string;
+    task: Task;
     onDelete: () => void;
-    onEdit: (newName: string) => void;
+    onEdit: (newName: string, newDeadline?: string) => void;
 }) {
-    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
+    const { attributes, listeners, setNodeRef, transform, transition } = useSortable({
+        id: task.id,
+    });
     const style = { transform: CSS.Transform.toString(transform), transition };
 
     const [isEditing, setIsEditing] = useState(false);
-    const [newName, setNewName] = useState(id);
+    const [newName, setNewName] = useState(task.name);
+    const [newDeadline, setNewDeadline] = useState(task.deadline || '');
 
     const handleEditConfirm = () => {
         if (newName.trim()) {
-            onEdit(newName);
+            onEdit(newName, newDeadline);
         } else {
-            setNewName(id);
+            setNewName(task.name);
+            setNewDeadline(task.deadline || '');
         }
         setIsEditing(false);
     };
@@ -45,36 +55,54 @@ function TaskCard({
             ref={setNodeRef}
             style={style}
             {...attributes}
-            className="bg-neutral-700 p-3 rounded-lg mb-2 shadow hover:bg-neutral-600 transition cursor-default select-none flex justify-between items-center"
+            className="bg-neutral-700 p-3 rounded-lg mb-2 shadow hover:bg-neutral-600 transition cursor-default select-none flex flex-col gap-2"
             onDoubleClick={handleDoubleClick}
         >
-            <div
-                {...listeners}
-                className="cursor-grab active:cursor-grabbing flex-grow flex items-center gap-2"
-            >
-                {isEditing ? (
-                    <input
-                        value={newName}
-                        onChange={(e) => setNewName(e.target.value)}
-                        onBlur={handleEditConfirm}
-                        onKeyDown={(e) => e.key === 'Enter' && handleEditConfirm()}
-                        className="bg-neutral-800 text-white rounded px-2 py-1 w-full"
-                        autoFocus
-                    />
-                ) : (
-                    <span className="truncate w-full">{id}</span>
-                )}
+            <div className="flex justify-between items-center">
+                <div {...listeners} className="cursor-grab active:cursor-grabbing flex-grow">
+                    {isEditing ? (
+                        <input
+                            value={newName}
+                            onChange={(e) => setNewName(e.target.value)}
+                            onBlur={handleEditConfirm}
+                            onKeyDown={(e) => e.key === 'Enter' && handleEditConfirm()}
+                            className="bg-neutral-800 text-white rounded px-2 py-1 w-full"
+                            autoFocus
+                        />
+                    ) : (
+                        <span className="truncate text-white">{task.name}</span>
+                    )}
+                </div>
+
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onDelete();
+                    }}
+                    className="ml-2 hover:text-red-400 transition flex-shrink-0"
+                >
+                    <Trash2 size={16} />
+                </button>
             </div>
 
-            <button
-                onClick={(e) => {
-                    e.stopPropagation();
-                    onDelete();
-                }}
-                className="ml-2 hover:text-red-400 transition flex-shrink-0"
-            >
-                <Trash2 size={16} />
-            </button>
+            {isEditing ? (
+                <div className="flex items-center gap-2">
+                    <Calendar size={14} className="text-neutral-300" />
+                    <input
+                        type="date"
+                        value={newDeadline}
+                        onChange={(e) => setNewDeadline(e.target.value)}
+                        onBlur={handleEditConfirm}
+                        className="bg-neutral-800 text-white rounded px-2 py-1 w-full text-sm"
+                    />
+                </div>
+            ) : (
+                task.deadline && (
+                    <div className="text-xs text-neutral-300 flex items-center gap-1">
+                        <Calendar size={12} /> {task.deadline}
+                    </div>
+                )
+            )}
         </div>
     );
 }
@@ -82,28 +110,36 @@ function TaskCard({
 type ColumnKey = 'todo' | 'clarification' | 'change' | 'progress' | 'review' | 'done';
 interface Column {
     name: string;
-    items: string[];
+    color: string;
+    items: Task[];
 }
 type Columns = Record<ColumnKey, Column>;
 
 export default function KanbanBoard() {
     const [columns, setColumns] = useState<Columns>({
-        todo: { name: 'To do', items: ['Projekt setup', 'Design review'] },
-        clarification: { name: 'In clarification', items: [] },
-        change: { name: 'Change Requested', items: [] },
-        progress: { name: 'In Progress', items: [] },
-        review: { name: 'Review', items: [] },
-        done: { name: 'Done', items: [] },
+        todo: {
+            name: 'To do',
+            color: 'bg-neutral-900/70',
+            items: [
+                { id: '1', name: 'Projekt setup' },
+                { id: '2', name: 'Design review' },
+            ],
+        },
+        clarification: { name: 'In clarification', color: 'bg-blue-900/30', items: [] },
+        change: { name: 'Change Requested', color: 'bg-yellow-900/30', items: [] },
+        progress: { name: 'In Progress', color: 'bg-purple-900/30', items: [] },
+        review: { name: 'Review', color: 'bg-green-900/30', items: [] },
+        done: { name: 'Done', color: 'bg-emerald-900/30', items: [] },
     });
 
     // LocalStorage mentés + visszatöltés
     useEffect(() => {
-        const saved = localStorage.getItem('kanban-columns');
+        const saved = localStorage.getItem('kanban-columns-v2');
         if (saved) setColumns(JSON.parse(saved));
     }, []);
 
     useEffect(() => {
-        localStorage.setItem('kanban-columns', JSON.stringify(columns));
+        localStorage.setItem('kanban-columns-v2', JSON.stringify(columns));
     }, [columns]);
 
     const handleDragEnd = (event: DragEndEvent) => {
@@ -114,8 +150,8 @@ export default function KanbanBoard() {
         let destCol: ColumnKey | undefined;
 
         (Object.keys(columns) as ColumnKey[]).forEach((key) => {
-            if (columns[key].items.includes(active.id as string)) sourceCol = key;
-            if (columns[key].items.includes(over.id as string)) destCol = key;
+            if (columns[key].items.some((x) => x.id === active.id)) sourceCol = key;
+            if (columns[key].items.some((x) => x.id === over.id)) destCol = key;
         });
 
         if (!sourceCol || !destCol) return;
@@ -124,10 +160,17 @@ export default function KanbanBoard() {
         const dCol = destCol as ColumnKey;
         const sourceItems = [...columns[sCol].items];
         const destItems = [...columns[dCol].items];
+        const draggedItem = sourceItems.find((x) => x.id === active.id);
 
+        if (!draggedItem) return;
+
+        // remove from source
+        const oldIndex = sourceItems.findIndex((x) => x.id === active.id);
+        sourceItems.splice(oldIndex, 1);
+
+        // same column reorder
         if (sCol === dCol) {
-            const oldIndex = sourceItems.indexOf(active.id as string);
-            const newIndex = sourceItems.indexOf(over.id as string);
+            const newIndex = destItems.findIndex((x) => x.id === over.id);
             const newItems = arrayMove(sourceItems, oldIndex, newIndex);
             setColumns((prev) => ({
                 ...prev,
@@ -136,8 +179,10 @@ export default function KanbanBoard() {
             return;
         }
 
-        sourceItems.splice(sourceItems.indexOf(active.id as string), 1);
-        destItems.splice(0, 0, active.id as string);
+        // different column
+        const overIndex = destItems.findIndex((x) => x.id === over.id);
+        if (overIndex >= 0) destItems.splice(overIndex, 0, draggedItem);
+        else destItems.push(draggedItem);
 
         setColumns((prev) => ({
             ...prev,
@@ -148,48 +193,62 @@ export default function KanbanBoard() {
 
     const addTask = (col: ColumnKey, name: string) => {
         if (!name.trim()) return;
+        const newTask: Task = {
+            id: Date.now().toString(),
+            name,
+        };
         setColumns((prev) => ({
             ...prev,
-            [col]: { ...prev[col], items: [...prev[col].items, name] },
+            [col]: { ...prev[col], items: [...prev[col].items, newTask] },
         }));
     };
 
     const deleteTask = (col: ColumnKey, id: string) => {
         setColumns((prev) => ({
             ...prev,
-            [col]: { ...prev[col], items: prev[col].items.filter((x) => x !== id) },
+            [col]: { ...prev[col], items: prev[col].items.filter((x) => x.id !== id) },
         }));
     };
 
-    const editTask = (col: ColumnKey, oldId: string, newId: string) => {
+    const editTask = (col: ColumnKey, id: string, newName: string, newDeadline?: string) => {
         setColumns((prev) => ({
             ...prev,
             [col]: {
                 ...prev[col],
-                items: prev[col].items.map((x) => (x === oldId ? newId : x)),
+                items: prev[col].items.map((x) =>
+                    x.id === id ? { ...x, name: newName, deadline: newDeadline } : x
+                ),
             },
         }));
     };
 
     return (
-        <div className="flex gap-4 overflow-x-auto p-4">
+        <div className="flex gap-4 overflow-x-auto p-4 min-h-screen">
             <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
                 {(Object.entries(columns) as [ColumnKey, Column][]).map(([key, column]) => (
                     <div
                         key={key}
-                        className="bg-neutral-900 rounded-xl p-4 w-72 flex-shrink-0 shadow-lg border border-neutral-800"
+                        className={`${column.color} rounded-xl p-4 w-72 flex-shrink-0 shadow-lg border border-neutral-700`}
                     >
                         <h2 className="text-lg font-semibold mb-4 flex items-center justify-between text-white">
-                            {column.name}
+                            <span>{column.name}</span>
+                            <span className="text-sm text-neutral-400">
+                                {column.items.length}
+                            </span>
                         </h2>
 
-                        <SortableContext items={column.items} strategy={verticalListSortingStrategy}>
-                            {column.items.map((id) => (
+                        <SortableContext
+                            items={column.items.map((t) => t.id)}
+                            strategy={verticalListSortingStrategy}
+                        >
+                            {column.items.map((task) => (
                                 <TaskCard
-                                    key={id}
-                                    id={id}
-                                    onDelete={() => deleteTask(key, id)}
-                                    onEdit={(newName) => editTask(key, id, newName)}
+                                    key={task.id}
+                                    task={task}
+                                    onDelete={() => deleteTask(key, task.id)}
+                                    onEdit={(newName, newDeadline) =>
+                                        editTask(key, task.id, newName, newDeadline)
+                                    }
                                 />
                             ))}
                         </SortableContext>
