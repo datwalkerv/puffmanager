@@ -58,7 +58,7 @@ function TaskCard({
             style={style}
             {...attributes}
             className={`p-3 rounded-lg mb-2 shadow transition cursor-default select-none flex flex-col gap-2 ${
-                isOverdue ? 'bg-red-900/40 hover:bg-red-800/40' : 'bg-neutral-700 hover:bg-neutral-600'
+                isOverdue ? 'bg-red-500/30 hover:bg-red-500/50' : 'bg-neutral-700 hover:bg-neutral-600'
             }`}
             onDoubleClick={handleDoubleClick}
         >
@@ -123,17 +123,17 @@ export default function KanbanBoard() {
     const [columns, setColumns] = useState<Columns>({
         todo: {
             name: 'To do',
-            color: 'bg-neutral-900/70',
+            color: 'bg-neutral-800/60',
             items: [
                 { id: '1', name: 'Projekt setup' },
                 { id: '2', name: 'Design review' },
             ],
         },
-        clarification: { name: 'In clarification', color: 'bg-blue-900/30', items: [] },
-        change: { name: 'Change Requested', color: 'bg-yellow-900/30', items: [] },
-        progress: { name: 'In Progress', color: 'bg-purple-900/30', items: [] },
-        review: { name: 'Review', color: 'bg-green-900/30', items: [] },
-        done: { name: 'Done', color: 'bg-emerald-900/30', items: [] },
+        clarification: { name: 'In clarification', color: 'bg-blue-500/20', items: [] },
+        change: { name: 'Change Requested', color: 'bg-yellow-500/20', items: [] },
+        progress: { name: 'In Progress', color: 'bg-purple-500/20', items: [] },
+        review: { name: 'Review', color: 'bg-green-500/20', items: [] },
+        done: { name: 'Done', color: 'bg-emerald-500/20', items: [] },
     });
 
     // LocalStorage mentés + visszatöltés
