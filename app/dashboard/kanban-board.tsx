@@ -9,18 +9,35 @@ import {
     verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Plus, Trash2, Edit3 } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 
-function TaskCard({ id, onDelete, onEdit }: { id: string; onDelete: () => void; onEdit: (newName: string) => void }) {
+function TaskCard({
+                      id,
+                      onDelete,
+                      onEdit,
+                  }: {
+    id: string;
+    onDelete: () => void;
+    onEdit: (newName: string) => void;
+}) {
     const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
     const style = { transform: CSS.Transform.toString(transform), transition };
 
     const [isEditing, setIsEditing] = useState(false);
     const [newName, setNewName] = useState(id);
 
-    const handleEdit = () => {
-        if (isEditing && newName.trim()) onEdit(newName);
-        setIsEditing(!isEditing);
+    const handleEditConfirm = () => {
+        if (newName.trim()) {
+            onEdit(newName);
+        } else {
+            setNewName(id);
+        }
+        setIsEditing(false);
+    };
+
+    const handleDoubleClick = (e: React.MouseEvent) => {
+        if ((e.target as HTMLElement).closest('button')) return;
+        setIsEditing(true);
     };
 
     return (
@@ -28,28 +45,36 @@ function TaskCard({ id, onDelete, onEdit }: { id: string; onDelete: () => void; 
             ref={setNodeRef}
             style={style}
             {...attributes}
-            {...listeners}
-            className="bg-neutral-700 p-3 rounded-lg mb-2 shadow hover:bg-neutral-600 transition cursor-grab select-none flex justify-between items-center"
+            className="bg-neutral-700 p-3 rounded-lg mb-2 shadow hover:bg-neutral-600 transition cursor-default select-none flex justify-between items-center"
+            onDoubleClick={handleDoubleClick}
         >
-            {isEditing ? (
-                <input
-                    value={newName}
-                    onChange={(e) => setNewName(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleEdit()}
-                    className="bg-neutral-800 text-white rounded px-2 py-1 w-full mr-2"
-                    autoFocus
-                />
-            ) : (
-                <span className="truncate">{id}</span>
-            )}
-            <div className="flex gap-1 ml-2">
-                <button onClick={handleEdit} className="hover:text-blue-400 transition">
-                    <Edit3 size={16} />
-                </button>
-                <button onClick={onDelete} className="hover:text-red-400 transition">
-                    <Trash2 size={16} />
-                </button>
+            <div
+                {...listeners}
+                className="cursor-grab active:cursor-grabbing flex-grow flex items-center gap-2"
+            >
+                {isEditing ? (
+                    <input
+                        value={newName}
+                        onChange={(e) => setNewName(e.target.value)}
+                        onBlur={handleEditConfirm}
+                        onKeyDown={(e) => e.key === 'Enter' && handleEditConfirm()}
+                        className="bg-neutral-800 text-white rounded px-2 py-1 w-full"
+                        autoFocus
+                    />
+                ) : (
+                    <span className="truncate w-full">{id}</span>
+                )}
             </div>
+
+            <button
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete();
+                }}
+                className="ml-2 hover:text-red-400 transition flex-shrink-0"
+            >
+                <Trash2 size={16} />
+            </button>
         </div>
     );
 }
@@ -71,7 +96,7 @@ export default function KanbanBoard() {
         done: { name: 'Done', items: [] },
     });
 
-    // LocalStorage: mentés és visszatöltés
+    // LocalStorage mentés + visszatöltés
     useEffect(() => {
         const saved = localStorage.getItem('kanban-columns');
         if (saved) setColumns(JSON.parse(saved));
@@ -150,8 +175,11 @@ export default function KanbanBoard() {
         <div className="flex gap-4 overflow-x-auto p-4">
             <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
                 {(Object.entries(columns) as [ColumnKey, Column][]).map(([key, column]) => (
-                    <div key={key} className="bg-neutral-900 rounded-xl p-4 w-72 flex-shrink-0 shadow-lg">
-                        <h2 className="text-lg font-semibold mb-4 flex items-center justify-between">
+                    <div
+                        key={key}
+                        className="bg-neutral-900 rounded-xl p-4 w-72 flex-shrink-0 shadow-lg border border-neutral-800"
+                    >
+                        <h2 className="text-lg font-semibold mb-4 flex items-center justify-between text-white">
                             {column.name}
                         </h2>
 
