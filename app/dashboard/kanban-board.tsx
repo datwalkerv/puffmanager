@@ -50,12 +50,16 @@ function TaskCard({
         setIsEditing(true);
     };
 
+    const isOverdue = task.deadline && new Date(task.deadline) < new Date();
+
     return (
         <div
             ref={setNodeRef}
             style={style}
             {...attributes}
-            className="bg-neutral-700 p-3 rounded-lg mb-2 shadow hover:bg-neutral-600 transition cursor-default select-none flex flex-col gap-2"
+            className={`p-3 rounded-lg mb-2 shadow transition cursor-default select-none flex flex-col gap-2 ${
+                isOverdue ? 'bg-red-900/40 hover:bg-red-800/40' : 'bg-neutral-700 hover:bg-neutral-600'
+            }`}
             onDoubleClick={handleDoubleClick}
         >
             <div className="flex justify-between items-center">
@@ -191,11 +195,12 @@ export default function KanbanBoard() {
         }));
     };
 
-    const addTask = (col: ColumnKey, name: string) => {
+    const addTask = (col: ColumnKey, name: string, deadline?: string) => {
         if (!name.trim()) return;
         const newTask: Task = {
             id: Date.now().toString(),
             name,
+            deadline,
         };
         setColumns((prev) => ({
             ...prev,
@@ -223,7 +228,7 @@ export default function KanbanBoard() {
     };
 
     return (
-        <div className="flex gap-4 overflow-x-auto p-4 min-h-screen">
+        <div className="flex gap-4 overflow-x-auto p-4 items-start">
             <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
                 {(Object.entries(columns) as [ColumnKey, Column][]).map(([key, column]) => (
                     <div
@@ -253,7 +258,7 @@ export default function KanbanBoard() {
                             ))}
                         </SortableContext>
 
-                        <AddTaskInput onAdd={(name) => addTask(key, name)} />
+                        <AddTaskInput onAdd={(name, deadline) => addTask(key, name, deadline)} />
                     </div>
                 ))}
             </DndContext>
@@ -264,24 +269,33 @@ export default function KanbanBoard() {
 function AddTaskInput({ onAdd }: { onAdd: (name: string) => void }) {
     const [value, setValue] = useState('');
     const [showInput, setShowInput] = useState(false);
+    const [deadline, setDeadline] = useState('');
 
     const handleSubmit = () => {
         if (!value.trim()) return;
-        onAdd(value);
+        onAdd(value, deadline || undefined);
         setValue('');
+        setDeadline('');
         setShowInput(false);
     };
 
     return (
         <div className="mt-2">
             {showInput ? (
-                <div className="flex gap-2">
+                <div className="flex flex-col gap-2">
                     <input
-                        className="bg-neutral-800 text-white rounded px-2 py-1 flex-grow"
+                        className="bg-neutral-800 text-white rounded px-2 py-1 w-full"
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+                        placeholder="Task name"
                         autoFocus
+                    />
+                    <input
+                        type="date"
+                        className="bg-neutral-800 text-white rounded px-2 py-1 w-full text-sm"
+                        value={deadline}
+                        onChange={(e) => setDeadline(e.target.value)}
                     />
                     <button
                         onClick={handleSubmit}
