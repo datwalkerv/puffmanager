@@ -91,7 +91,7 @@ export default function RegisterPage() {
               <Input
                 id="email"
                 type="email"
-                placeholder="balag@subtrack.co"
+                placeholder="balag@puffcontent.hu"
                 {...register("email")}
               />
               {errors.email && (
