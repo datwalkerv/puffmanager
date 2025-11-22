@@ -147,53 +147,50 @@ export default function KanbanBoard() {
     }, [columns]);
 
     const handleDragEnd = (event: DragEndEvent) => {
-        const { active, over } = event;
-        if (!over || active.id === over.id) return;
+  const { active, over } = event;
+  if (!over || active.id === over.id) return;
 
-        let sourceCol: ColumnKey | undefined;
-        let destCol: ColumnKey | undefined;
+  let sourceCol: ColumnKey | undefined;
+  let destCol: ColumnKey | undefined;
 
-        (Object.keys(columns) as ColumnKey[]).forEach((key) => {
-            if (columns[key].items.some((x) => x.id === active.id)) sourceCol = key;
-            if (columns[key].items.some((x) => x.id === over.id)) destCol = key;
-        });
+  (Object.keys(columns) as ColumnKey[]).forEach((key) => {
+    if (columns[key].items.some((x) => x.id === active.id)) sourceCol = key;
+    if (columns[key].items.some((x) => x.id === over.id)) destCol = key;
+  });
 
-        if (!sourceCol || !destCol) return;
+  if (!sourceCol || !destCol) return;
 
-        const sCol = sourceCol as ColumnKey;
-        const dCol = destCol as ColumnKey;
-        const sourceItems = [...columns[sCol].items];
-        const destItems = [...columns[dCol].items];
-        const draggedItem = sourceItems.find((x) => x.id === active.id);
+  const sCol = sourceCol;
+  const dCol = destCol;
 
-        if (!draggedItem) return;
+  const sourceItems = [...columns[sCol].items];
+  const destItems = sCol === dCol ? sourceItems : [...columns[dCol].items];
+  const draggedItemIndex = sourceItems.findIndex((x) => x.id === active.id);
+  const draggedItem = sourceItems[draggedItemIndex];
+  if (!draggedItem) return;
 
-        // remove from source
-        const oldIndex = sourceItems.findIndex((x) => x.id === active.id);
-        sourceItems.splice(oldIndex, 1);
+  // remove from source
+  sourceItems.splice(draggedItemIndex, 1);
 
-        // same column reorder
-        if (sCol === dCol) {
-            const newIndex = destItems.findIndex((x) => x.id === over.id);
-            const newItems = arrayMove(sourceItems, oldIndex, newIndex);
-            setColumns((prev) => ({
-                ...prev,
-                [sCol]: { ...prev[sCol], items: newItems },
-            }));
-            return;
-        }
+  if (sCol === dCol) {
+    // same column reorder
+    const overIndex = sourceItems.findIndex((x) => x.id === over.id);
+    const newItems = arrayMove([...sourceItems, draggedItem], draggedItemIndex, overIndex >= 0 ? overIndex : sourceItems.length);
+    setColumns((prev) => ({ ...prev, [sCol]: { ...prev[sCol], items: newItems } }));
+  } else {
+    // different column
+    const overIndex = destItems.findIndex((x) => x.id === over.id);
+    if (overIndex >= 0) destItems.splice(overIndex, 0, draggedItem);
+    else destItems.push(draggedItem);
 
-        // different column
-        const overIndex = destItems.findIndex((x) => x.id === over.id);
-        if (overIndex >= 0) destItems.splice(overIndex, 0, draggedItem);
-        else destItems.push(draggedItem);
+    setColumns((prev) => ({
+      ...prev,
+      [sCol]: { ...prev[sCol], items: sourceItems },
+      [dCol]: { ...prev[dCol], items: destItems },
+    }));
+  }
+};
 
-        setColumns((prev) => ({
-            ...prev,
-            [sCol]: { ...prev[sCol], items: sourceItems },
-            [dCol]: { ...prev[dCol], items: destItems },
-        }));
-    };
 
     const addTask = (col: ColumnKey, name: string, deadline?: string) => {
         if (!name.trim()) return;
@@ -266,52 +263,52 @@ export default function KanbanBoard() {
     );
 }
 
-function AddTaskInput({ onAdd }: { onAdd: (name: string) => void }) {
-    const [value, setValue] = useState('');
-    const [showInput, setShowInput] = useState(false);
-    const [deadline, setDeadline] = useState('');
+function AddTaskInput({ onAdd }: { onAdd: (name: string, deadline?: string) => void }) {
+  const [value, setValue] = useState('');
+  const [showInput, setShowInput] = useState(false);
+  const [deadline, setDeadline] = useState('');
 
-    const handleSubmit = () => {
-        if (!value.trim()) return;
-        onAdd(value, deadline || undefined);
-        setValue('');
-        setDeadline('');
-        setShowInput(false);
-    };
+  const handleSubmit = () => {
+    if (!value.trim()) return;
+    onAdd(value, deadline || undefined);
+    setValue('');
+    setDeadline('');
+    setShowInput(false);
+  };
 
-    return (
-        <div className="mt-2">
-            {showInput ? (
-                <div className="flex flex-col gap-2">
-                    <input
-                        className="bg-neutral-800 text-white rounded px-2 py-1 w-full"
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
-                        placeholder="Task name"
-                        autoFocus
-                    />
-                    <input
-                        type="date"
-                        className="bg-neutral-800 text-white rounded px-2 py-1 w-full text-sm"
-                        value={deadline}
-                        onChange={(e) => setDeadline(e.target.value)}
-                    />
-                    <button
-                        onClick={handleSubmit}
-                        className="bg-green-600 hover:bg-green-500 rounded px-3 py-1 text-sm"
-                    >
-                        Add
-                    </button>
-                </div>
-            ) : (
-                <button
-                    onClick={() => setShowInput(true)}
-                    className="flex items-center text-sm text-neutral-400 hover:text-white mt-2"
-                >
-                    <Plus size={16} className="mr-1" /> New task
-                </button>
-            )}
+  return (
+    <div className="mt-2">
+      {showInput ? (
+        <div className="flex flex-col gap-2">
+          <input
+            className="bg-neutral-800 text-white rounded px-2 py-1 w-full"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            onKeyDown={(e) => e.key === 'Enter' && handleSubmit()}
+            placeholder="Task name"
+            autoFocus
+          />
+          <input
+            type="date"
+            className="bg-neutral-800 text-white rounded px-2 py-1 w-full text-sm"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+          />
+          <button
+            onClick={handleSubmit}
+            className="bg-green-600 hover:bg-green-500 rounded px-3 py-1 text-sm"
+          >
+            Add
+          </button>
         </div>
-    );
+      ) : (
+        <button
+          onClick={() => setShowInput(true)}
+          className="flex items-center text-sm text-neutral-400 hover:text-white mt-2"
+        >
+          <Plus size={16} className="mr-1" /> New task
+        </button>
+      )}
+    </div>
+  );
 }

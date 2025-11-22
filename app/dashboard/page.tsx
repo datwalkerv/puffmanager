@@ -15,6 +15,7 @@ export default async function Dashboard() {
             <h1 className="text-2xl font-bold mb-4 text-center">
                 Dashboard
             </h1>
+            
             <h1 className="text-2xl font-bold mb-4">
                 Kanban board
             </h1>
