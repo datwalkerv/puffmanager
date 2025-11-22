@@ -49,14 +49,11 @@ export function CreateOrganization() {
   async function onSubmit(formData: FormSchemaType) {
     setLoading(true);
     try {
-      console.log("Creating organization with data:", formData);
       const { data, error } = await authClient.organization.create({
         name: formData.name,
         slug: formData.slug,
         logo: formData.logo,
       });
-
-      console.log({ data, error });
 
       if (error) {
         toast.error(error.message || "Unable to create organization");

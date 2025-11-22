@@ -21,14 +21,7 @@ export const auth = betterAuth({
     updateAge: 60 * 60 * 24, // 1 day
   },
   plugins: [
-    adminPlugin({
-      ac,
-      roles: {
-        admin,
-        user,
-        editor,
-      },
-    }),
+    adminPlugin(),
     organization() 
   ],
   hooks: {
