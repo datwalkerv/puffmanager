@@ -24,6 +24,7 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { AddProject } from "@/components/shared/Dashboard/AddProject";
 
 interface Item {
   id: string;
@@ -59,7 +60,7 @@ function SortableItem({
   };
 
   return (
-    <li
+    <div
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -69,7 +70,7 @@ function SortableItem({
       }`}
     >
       <span className="text-white">{content}</span>
-    </li>
+    </div>
   );
 }
 
@@ -121,7 +122,7 @@ function ItemOverlay({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function MultipleContainers() {
+export default function Kanban({ org }: { org: any }) {
   const [containers, setContainers] = useState<Container[]>([
     {
       id: "todo",
@@ -255,7 +256,10 @@ export default function MultipleContainers() {
 
   return (
     <div className="mx-auto w-full">
-      <h2 className="mb-4 text-xl font-bold text-white">Kanban Board</h2>
+      <div className="w-full flex items-center justify-between mb-4 px-2">
+        <h2 className="text-2xl font-header text-white">{org?.name}</h2>
+        <AddProject />
+      </div>
 
       <DndContext
         sensors={sensors}

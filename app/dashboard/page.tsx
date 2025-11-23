@@ -1,7 +1,7 @@
-import { getCurrentUser, getRole, isAuthenticated } from "@/lib/auth/auth-functions";
+import { getCurrentUser, isAuthenticated } from "@/lib/auth/auth-functions";
 import { redirect } from "next/navigation";
-import KanbanLoader from "./KanbanLoader";
-import MultipleContainers from "./Kanban";
+import Kanban from "./Kanban";
+import { getUserOrganizations } from "@/actions/kanban.actions";
 
 export default async function Dashboard() {
     const valid = await isAuthenticated();
@@ -11,13 +11,17 @@ export default async function Dashboard() {
         redirect("/login");
     }
 
+    const userOrganizations = await getUserOrganizations();
+    
+    const clientOrganization = userOrganizations?.data[0];
+
     return (
-        <div className="min-h-screen p-8">
-            <h1 className="text-2xl font-bold mb-4 text-center">
+        <div className="min-h-screen py-12">
+            <h1 className="text-3xl font-header text-yellow mb-4 text-center">
                 Dashboard
             </h1>
-            
-            <MultipleContainers />
+
+            <Kanban org={clientOrganization} />
         </div>
     );
 }
