@@ -1,6 +1,7 @@
 import { getCurrentUser, getRole, isAuthenticated } from "@/lib/auth/auth-functions";
 import { redirect } from "next/navigation";
 import KanbanLoader from "./KanbanLoader";
+import MultipleContainers from "./Kanban";
 
 export default async function Dashboard() {
     const valid = await isAuthenticated();
@@ -16,10 +17,7 @@ export default async function Dashboard() {
                 Dashboard
             </h1>
             
-            <h1 className="text-2xl font-bold mb-4">
-                Kanban board
-            </h1>
-            <KanbanLoader />
+            <MultipleContainers />
         </div>
     );
 }
