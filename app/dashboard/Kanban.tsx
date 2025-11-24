@@ -25,6 +25,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { AddProject } from "@/components/shared/Dashboard/AddProject";
+import { SheetInfo } from "@/components/shared/Dashboard/SheetInfo";
 
 interface Item {
   id: string;
@@ -65,11 +66,12 @@ function SortableItem({
       style={style}
       {...attributes}
       {...listeners}
-      className={`cursor-grab touch-none rounded border p-3 active:cursor-grabbing border-white/10 bg-darkgray/50 backdrop-blur-sm ${
+      className={`cursor-grab touch-none rounded border p-3 active:cursor-grabbing border-white/10 bg-darkgray/50 backdrop-blur-sm flex gap-2 items-center ${
         isDragging ? "z-10 opacity-50 shadow-md" : ""
       }`}
     >
       <span className="text-white">{content}</span>
+      <SheetInfo />
     </div>
   );
 }
@@ -172,7 +174,7 @@ export default function Kanban({ org }: { org: any }) {
     useSensor(PointerSensor, {
       activationConstraint: { delay: 20, tolerance: 5 },
     }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+    useSensor(KeyboardSensor)
   );
 
   function findContainerId(id: UniqueIdentifier) {
