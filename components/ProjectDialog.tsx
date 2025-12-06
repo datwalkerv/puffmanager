@@ -5,9 +5,10 @@ import { useRouter } from 'next/navigation';
 type Props = {
     open: boolean;
     onClose: () => void;
+    user?: any;
 };
 
-export default function ProjectDialog({ open, onClose }: Props) {
+export default function ProjectDialog({ open, onClose, user }: Props) {
     const [orgs, setOrgs] = useState<{ id: string; name: string }[]>([]);
     const [projectName, setProjectName] = useState('');
     const [selectedOrg, setSelectedOrg] = useState('');
@@ -28,7 +29,6 @@ export default function ProjectDialog({ open, onClose }: Props) {
 
         setLoading(true);
         try {
-            // 1) create project
             const res = await fetch('/api/projects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -38,7 +38,6 @@ export default function ProjectDialog({ open, onClose }: Props) {
             if (!res.ok) throw new Error(json.error || 'Create project failed');
             const projectId = json.project?.id;
 
-            // 2) init chat for project
             const chatRes = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -47,7 +46,6 @@ export default function ProjectDialog({ open, onClose }: Props) {
             const chatJson = await chatRes.json();
             if (!chatRes.ok) console.warn('Chat init failed', chatJson);
 
-            // 3) navigate to project page (kanban + chat)
             onClose();
             router.push(`/projects/${projectId}`);
         } catch (err) {
@@ -61,26 +59,57 @@ export default function ProjectDialog({ open, onClose }: Props) {
     if (!open) return null;
 
     return (
-        <div className="modal-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)' }}>
-            <div className="modal" style={{ width: 480, margin: '6rem auto', padding: 20, background: '#fff', borderRadius: 8 }}>
-                <h2>Új projekt létrehozása</h2>
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+            {/* Sötét overlay */}
+            <div
+                className="fixed inset-0 bg-black bg-opacity-80"
+                onClick={onClose}
+            />
+
+            {/* Modal panel */}
+            <div className="bg-white rounded-xl shadow-lg z-50 w-full max-w-md p-6 relative">
+                <h2 className="text-xl font-semibold mb-4">Új projekt létrehozása</h2>
                 <form onSubmit={handleSubmit}>
-                    <div style={{ marginBottom: 10 }}>
-                        <label>Projekt neve<br/>
-                            <input value={projectName} onChange={e => setProjectName(e.target.value)} required />
+                    <div className="mb-4">
+                        <label>
+                            Projekt neve<br/>
+                            <input
+                                value={projectName}
+                                onChange={e => setProjectName(e.target.value)}
+                                required
+                                className="w-full border border-gray-300 rounded px-2 py-1"
+                            />
                         </label>
                     </div>
-                    <div style={{ marginBottom: 10 }}>
-                        <label>Szervezet<br/>
-                            <select value={selectedOrg} onChange={e => setSelectedOrg(e.target.value)} required>
+                    <div className="mb-4">
+                        <label>
+                            Szervezet<br/>
+                            <select
+                                value={selectedOrg}
+                                onChange={e => setSelectedOrg(e.target.value)}
+                                required
+                                className="w-full border border-gray-300 rounded px-2 py-1"
+                            >
                                 <option value="">-- válassz --</option>
                                 {orgs.map(o => <option key={o.id} value={o.id}>{o.name}</option>)}
                             </select>
                         </label>
                     </div>
-                    <div style={{ display: 'flex', gap: 8 }}>
-                        <button type="submit" disabled={loading}>{loading ? 'Létrehozás...' : 'Létrehozás'}</button>
-                        <button type="button" onClick={onClose}>Mégse</button>
+                    <div className="flex gap-2 justify-end">
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                        >
+                            {loading ? 'Létrehozás...' : 'Létrehozás'}
+                        </button>
+                        <button
+                            type="button"
+                            onClick={onClose}
+                            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+                        >
+                            Mégse
+                        </button>
                     </div>
                 </form>
             </div>
