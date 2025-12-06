@@ -5,15 +5,11 @@ export default function ProjectChat({ projectId }: { projectId: string }) {
     const [messages, setMessages] = useState<{ id: string; text: string; author?: string }[]>([]);
     const [text, setText] = useState('');
 
-    // Példa: poll vagy websocket integráció
     useEffect(() => {
-        // ide jöhet a websocket csatlakozás vagy fetch a chat history-hoz
-        // fetch(`/api/chat?projectId=${projectId}`)...
     }, [projectId]);
 
     async function handleSend() {
         if (!text) return;
-        // itt POSTolnád a message-t a chat backendre
         setMessages(prev => [...prev, { id: String(Date.now()), text, author: 'you' }]);
         setText('');
     }

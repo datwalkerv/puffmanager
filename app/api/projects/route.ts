@@ -7,6 +7,5 @@ export async function POST(request: Request) {
     if (!name || !organizationId) return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
 
     const project = await createProject({ name, organizationId });
-    // project például: { id: 'proj_123', name, organizationId, createdAt: ... }
     return NextResponse.json({ project });
 }
