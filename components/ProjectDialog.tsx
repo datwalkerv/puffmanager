@@ -57,3 +57,33 @@ export default function ProjectDialog({ open, onClose }: Props) {
             setLoading(false);
         }
     }
+
+    if (!open) return null;
+
+    return (
+        <div className="modal-overlay" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)' }}>
+            <div className="modal" style={{ width: 480, margin: '6rem auto', padding: 20, background: '#fff', borderRadius: 8 }}>
+                <h2>Új projekt létrehozása</h2>
+                <form onSubmit={handleSubmit}>
+                    <div style={{ marginBottom: 10 }}>
+                        <label>Projekt neve<br/>
+                            <input value={projectName} onChange={e => setProjectName(e.target.value)} required />
+                        </label>
+                    </div>
+                    <div style={{ marginBottom: 10 }}>
+                        <label>Szervezet<br/>
+                            <select value={selectedOrg} onChange={e => setSelectedOrg(e.target.value)} required>
+                                <option value="">-- válassz --</option>
+                                {orgs.map(o => <option key={o.id} value={o.id}>{o.name}</option>)}
+                            </select>
+                        </label>
+                    </div>
+                    <div style={{ display: 'flex', gap: 8 }}>
+                        <button type="submit" disabled={loading}>{loading ? 'Létrehozás...' : 'Létrehozás'}</button>
+                        <button type="button" onClick={onClose}>Mégse</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+}
