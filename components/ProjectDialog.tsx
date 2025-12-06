@@ -15,20 +15,26 @@ export default function ProjectDialog({ open, onClose, user }: Props) {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
+    // Dinamikus organization lista
     useEffect(() => {
         if (!open) return;
         fetch('/api/organizations')
             .then(res => res.json())
             .then(data => setOrgs(data.organizations || []))
-            .catch(err => { console.error(err); setOrgs([]); });
+            .catch(err => {
+                console.error(err);
+                setOrgs([]);
+            });
     }, [open]);
 
+    // Submit: létrehozás + chat
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         if (!projectName || !selectedOrg) return;
 
         setLoading(true);
         try {
+            // 1️⃣ Projekt létrehozása
             const res = await fetch('/api/projects', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -38,6 +44,7 @@ export default function ProjectDialog({ open, onClose, user }: Props) {
             if (!res.ok) throw new Error(json.error || 'Create project failed');
             const projectId = json.project?.id;
 
+            // 2️⃣ Chat inicializálás a projekthez
             const chatRes = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -46,6 +53,7 @@ export default function ProjectDialog({ open, onClose, user }: Props) {
             const chatJson = await chatRes.json();
             if (!chatRes.ok) console.warn('Chat init failed', chatJson);
 
+            // 3️⃣ Redirect a projekt oldalára
             onClose();
             router.push(`/projects/${projectId}`);
         } catch (err) {
@@ -60,9 +68,9 @@ export default function ProjectDialog({ open, onClose, user }: Props) {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-            {/* Sötét overlay */}
+            {/* Overlay */}
             <div
-                className="fixed inset-0 bg-black bg-opacity-80"
+                className="fixed inset-0 bg-black bg-opacity-70"
                 onClick={onClose}
             />
 
@@ -72,29 +80,34 @@ export default function ProjectDialog({ open, onClose, user }: Props) {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label>
-                            Projekt neve<br/>
+                            Projekt neve
                             <input
+                                type="text"
                                 value={projectName}
                                 onChange={e => setProjectName(e.target.value)}
                                 required
-                                className="w-full border border-gray-300 rounded px-2 py-1"
+                                className="w-full border border-gray-300 rounded px-2 py-1 mt-1"
                             />
                         </label>
                     </div>
+
                     <div className="mb-4">
                         <label>
-                            Szervezet<br/>
+                            Szervezet
                             <select
                                 value={selectedOrg}
                                 onChange={e => setSelectedOrg(e.target.value)}
                                 required
-                                className="w-full border border-gray-300 rounded px-2 py-1"
+                                className="w-full border border-gray-300 rounded px-2 py-1 mt-1"
                             >
                                 <option value="">-- válassz --</option>
-                                {orgs.map(o => <option key={o.id} value={o.id}>{o.name}</option>)}
+                                {orgs.map(o => (
+                                    <option key={o.id} value={o.id}>{o.name}</option>
+                                ))}
                             </select>
                         </label>
                     </div>
+
                     <div className="flex gap-2 justify-end">
                         <button
                             type="submit"
