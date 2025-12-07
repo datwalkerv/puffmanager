@@ -24,7 +24,7 @@ a kapott eredményeket és a részletes megjegyzéseket.
 
 ---
 
-# ## Tesztelés 3
+# Tesztelés 3
 
 | Teszt ID | Modul | Lépés | Elvárt eredmény | Kapott eredmény | Státusz | Megjegyzés / Ellenőrzés |
 |---------|--------|--------|------------------|------------------|---------|---------------------------|
@@ -62,4 +62,5 @@ a kapott eredményeket és a részletes megjegyzéseket.
 
 A rendszer összességében **megbízható**, **jól optimalizált**,  
 és alkalmas a napi szintű professzionális használatra.
+
 
