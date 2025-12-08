@@ -5,7 +5,7 @@ import {
   isAuthenticated,
   notAuthenticatedObject,
 } from "@/lib/auth/auth-functions";
-import { auth, db } from "@/lib/auth/auth";
+import { auth } from "@/lib/auth/auth";
 import { headers } from "next/headers";
 
 type ActionResult<T = any> = {
