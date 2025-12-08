@@ -34,3 +34,4 @@ export async function getUserOrganizations() {
         } as ActionResult;
     }
 }
+

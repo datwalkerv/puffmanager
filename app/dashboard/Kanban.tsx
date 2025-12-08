@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DndContext,
   DragEndEvent,
@@ -26,10 +26,13 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { AddProject } from "@/components/shared/Dashboard/AddProject";
 import { SheetInfo } from "@/components/shared/Dashboard/SheetInfo";
+import { getProjects } from "@/actions/project.actions";
+import { AITaskDialog } from "@/components/shared/Dashboard/AITaskDialog";
 
 interface Item {
   id: string;
   content: string;
+  projectData?: any;
 }
 
 interface Container {
@@ -42,9 +45,11 @@ interface Container {
 function SortableItem({
   id,
   content,
+  projectData,
 }: {
   id: UniqueIdentifier;
   content: string;
+  projectData?: any;
 }) {
   const {
     attributes,
@@ -71,7 +76,7 @@ function SortableItem({
       }`}
     >
       <span className="text-white">{content}</span>
-      <SheetInfo />
+      <SheetInfo project={projectData} />
     </div>
   );
 }
@@ -102,7 +107,12 @@ function DroppableContainer({
       >
         <ul className="flex flex-col gap-2">
           {items.map((item) => (
-            <SortableItem key={item.id} id={item.id} content={item.content} />
+            <SortableItem
+              key={item.id}
+              id={item.id}
+              content={item.content}
+              projectData={item.projectData}
+            />
           ))}
         </ul>
       </SortableContext>
@@ -126,49 +136,36 @@ function ItemOverlay({ children }: { children: React.ReactNode }) {
 
 export default function Kanban({ org }: { org: any }) {
   const [containers, setContainers] = useState<Container[]>([
-    {
-      id: "todo",
-      title: "To Do",
-      bg: "bg-brown/20",
-      items: [
-        { id: "task-1", content: "Research @dnd-kit" },
-        { id: "task-2", content: "Create basic example" },
-        { id: "task-3", content: "Write tutorial" },
-      ],
-    },
+    { id: "todo", title: "To Do", bg: "bg-brown/20", items: [] as Item[] },
     {
       id: "clarification",
       title: "In Clarification",
       bg: "bg-brown/40",
-      items: [],
+      items: [] as Item[],
     },
     {
       id: "changes",
       title: "Change Requested",
       bg: "bg-brown",
-      items: [],
+      items: [] as Item[],
     },
     {
       id: "progress",
       title: "In Progress",
       bg: "bg-darkyellow/20",
-      items: [{ id: "task-4", content: "Record demo video" }],
+      items: [] as Item[],
     },
     {
       id: "review",
       title: "Review",
       bg: "bg-darkyellow/30",
-      items: [],
+      items: [] as Item[],
     },
-    {
-      id: "done",
-      title: "Done",
-      bg: "bg-[#6ab04c]/20",
-      items: [{ id: "task-5", content: "Setup project" }],
-    },
+    { id: "done", title: "Done", bg: "bg-[#6ab04c]/20", items: [] as Item[] },
   ]);
 
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
+  const [isLoading, setIsLoading] = useState(true); // Add this
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -176,6 +173,43 @@ export default function Kanban({ org }: { org: any }) {
     }),
     useSensor(KeyboardSensor)
   );
+
+  useEffect(() => {
+    async function loadProjects() {
+      if (!org?.name) return;
+
+      setIsLoading(true);
+      try {
+        const projects = await getProjects(org.name);
+        if (projects && Array.isArray(projects)) {
+          const newContainers = containers.map((container) => ({
+            ...container,
+            items: [],
+          }));
+
+          projects.forEach((project: any) => {
+            const status = project.status || "todo";
+            const container = newContainers.find((c) => c.id === status);
+            if (container) {
+              (container.items as Item[]).push({
+                id: project._id,
+                content: project.name || "Unnamed Project",
+                projectData: project,
+              });
+            }
+          });
+
+          setContainers(newContainers);
+        }
+      } catch (error) {
+        console.error("Error loading projects:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadProjects();
+  }, [org?.name]);
 
   function findContainerId(id: UniqueIdentifier) {
     if (containers.some((c) => c.id === id)) return id;
@@ -260,7 +294,20 @@ export default function Kanban({ org }: { org: any }) {
     <div className="mx-auto w-full">
       <div className="w-full flex items-center justify-between mb-4 px-2">
         <h2 className="text-2xl font-header text-white">{org?.name}</h2>
-        <AddProject />
+        <div className="flex gap-2">
+          <AITaskDialog
+            org={org}
+            onTasksCreated={() => {
+              window.location.reload();
+            }}
+          />
+          <AddProject
+            org={org}
+            onProjectAdded={() => {
+              window.location.reload();
+            }}
+          />
+        </div>
       </div>
 
       <DndContext

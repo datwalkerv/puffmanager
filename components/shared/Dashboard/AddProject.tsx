@@ -1,35 +1,44 @@
 "use client";
 
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { authClient } from "@/lib/auth/auth-client";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import * as z from "zod";
+import { Textarea } from "@/components/ui/textarea";
+
+import { createProject } from "@/actions/project.actions";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  slug: z.string().min(2, "Slug must be at least 2 characters"),
-  logo: z.string().url("Logo must be a valid URL"),
+  name: z.string().min(2, "Name is required"),
+  deadline: z.string().min(1, "Deadline is required"),
+  videos: z.number().min(0),
+  brief: z.string().url().optional(),
+  raw: z.string().url().optional(),
+  notes: z.string().optional(),
 });
 
-type FormSchemaType = z.infer<typeof formSchema>;
+interface AddProjectProps {
+  org: any;
+  onProjectAdded?: () => void; // Add this line
+}
 
-export function AddProject() {
+export function AddProject({ org, onProjectAdded }: AddProjectProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
@@ -37,81 +46,94 @@ export function AddProject() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormSchemaType>({
+    setValue,
+  } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      slug: "",
-      logo: "",
+      deadline: "",
+      videos: 0,
+      brief: "",
+      raw: "",
+      notes: "",
     },
   });
 
-  async function onSubmit(formData: FormSchemaType) {
+  async function onSubmit(data: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
-      const { data, error } = await authClient.organization.create({
-        name: formData.name,
-        slug: formData.slug,
-        logo: formData.logo,
-      });
-
-      if (error) {
-        toast.error(error.message || "Unable to create organization");
-      } else {
-        toast.success("Organization created");
+      const result = await createProject(data, org);
+      if (result?.success) {
+        toast.success("Project created successfully");
+        router.push("/dashboard");
         router.refresh();
+         if (onProjectAdded) {
+          onProjectAdded();
+        }
       }
-    } catch (error: any) {
-      toast.error("An unexpected error occurred");
+    } catch (err) {
+      toast.error("Failed to create project");
     } finally {
       setLoading(false);
     }
   }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button>Add Project</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+
+      <DialogContent className="sm:max-w-[450px]">
         <DialogHeader>
-          <DialogTitle>Create Organization</DialogTitle>
-          <DialogDescription>
-            Make changes to your organization here. Click save when you&apos;re
-            done.
-          </DialogDescription>
+          <DialogTitle>Create Project</DialogTitle>
+          <DialogDescription>Fill out the details below.</DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 mt-4">
-          <div className="grid gap-3">
+          <div className="grid gap-2">
             <Label htmlFor="name">Name</Label>
-            <Input id="name" type="text" required {...register("name")} />
-            {errors.name && (
-              <p className="text-sm text-red-400">{errors.name.message}</p>
-            )}
+            <Input id="name" {...register("name")} />
+            {errors.name && <p className="text-sm text-red-400">{errors.name.message}</p>}
           </div>
-          <div className="grid gap-3">
-            <Label htmlFor="slug">Slug</Label>
-            <Input id="slug" type="text" required {...register("slug")} />
-            {errors.slug && (
-              <p className="text-sm text-red-400">{errors.slug.message}</p>
-            )}
+
+          <div className="grid gap-2">
+            <Label htmlFor="deadline">Deadline</Label>
+            <Input type="date" id="deadline" {...register("deadline")} />
+            {errors.deadline && <p className="text-sm text-red-400">{errors.deadline.message}</p>}
           </div>
-          <div className="grid gap-3">
-            <Label htmlFor="logo">Logo</Label>
-            <Input id="logo" type="url" required {...register("logo")} />
-            {errors.logo && (
-              <p className="text-sm text-red-400">{errors.logo.message}</p>
-            )}
+
+          <div className="grid gap-2">
+            <Label htmlFor="videos">Number of Videos</Label>
+            <Input
+              type="number"
+              id="videos"
+              onChange={(e) => setValue("videos", parseInt(e.target.value))}
+            />
+            {errors.videos && <p className="text-sm text-red-400">Invalid video count</p>}
+          </div>
+
+          <div className="grid gap-2">
+            <Label htmlFor="brief">Brief Link</Label>
+            <Input id="brief" {...register("brief")} />
+          </div>
+
+          <div className="grid gap-2">
+            <Label htmlFor="raw">Raw Material Link</Label>
+            <Input id="raw" {...register("raw")} />
+          </div>
+
+          <div className="grid gap-2">
+            <Label htmlFor="notes">Notes</Label>
+            <Textarea id="notes" {...register("notes")} />
           </div>
 
           <DialogFooter className="mt-4">
             <DialogClose asChild>
-              <Button variant="outline" type="button">
-                Cancel
-              </Button>
+              <Button variant="outline" type="button">Cancel</Button>
             </DialogClose>
             <Button type="submit" disabled={loading}>
-              {loading ? "Creating..." : "Create Organization"}
+              {loading ? "Creating..." : "Create Project"}
             </Button>
           </DialogFooter>
         </form>
